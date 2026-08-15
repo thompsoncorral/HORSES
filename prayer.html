@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sainthood Nominations | H.O.R.S.E.S. Church</title>
+<title>Prayer Requests | H.O.R.S.E.S. Church</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,500;1,500&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -131,7 +131,7 @@ footer .faq-btn{display:inline-block;background:var(--gold);color:var(--purple-d
 <header class="topbar">
   <div class="wrap">
     <a href="index.html" class="brand"><svg class="halo-horseshoe" viewBox="0 0 80 90" aria-hidden="true"><circle cx="40" cy="42" r="34" fill="none" stroke="currentColor" stroke-width="1.4" stroke-dasharray="2 5" opacity=".55"/><path d="M14,55 A26,26 0 1,1 66,55" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round"/><circle cx="14" cy="55" r="3.2" fill="currentColor"/><circle cx="66" cy="55" r="3.2" fill="currentColor"/></svg><span class="brand-text">H.O.R.S.E.S. CHURCH<small>Harmonious Omni Religious Sanctum for Equine Sanctuary</small></span></a>
-    <nav><a href="index.html">Home</a><a href="theology.html">Theology</a><a href="ordination.html">Ordination</a><a href="membership.html">Membership</a><a href="sainthood.html" class="active">Sainthood</a><a href="donate.html">Donate</a><a href="faq.html">FAQ</a><a href="prayer.html">Prayer</a></nav>
+    <nav><a href="index.html">Home</a><a href="theology.html">Theology</a><a href="ordination.html">Ordination</a><a href="membership.html">Membership</a><a href="sainthood.html">Sainthood</a><a href="donate.html">Donate</a><a href="faq.html">FAQ</a><a href="prayer.html" class="active">Prayer</a></nav>
   </div>
 </header>
 <div class="banner">
@@ -148,50 +148,40 @@ footer .faq-btn{display:inline-block;background:var(--gold);color:var(--purple-d
 <section class="pagehead">
   <div class="wrap">
     <svg class="halo-horseshoe" viewBox="0 0 80 90" aria-hidden="true"><circle cx="40" cy="42" r="34" fill="none" stroke="currentColor" stroke-width="1.4" stroke-dasharray="2 5" opacity=".55"/><path d="M14,55 A26,26 0 1,1 66,55" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round"/><circle cx="14" cy="55" r="3.2" fill="currentColor"/><circle cx="66" cy="55" r="3.2" fill="currentColor"/></svg>
-    <span class="eyebrow">A Joyful Tradition</span>
-    <h1>Nominate a Horse for Sainthood</h1>
-    <p class="lede">Every horse leaves a mark on the humans who love it. Nominate a horse in your life &mdash; living or departed &mdash; for a place among the canonized.</p>
+    <span class="eyebrow">Intercession</span>
+    <h1>Submit a Prayer Request</h1>
+    <p class="lede">Share what's on your heart &mdash; for a horse in your care, for yourself, or for anyone in need. Our ministers hold every request with reverence.</p>
   </div>
 </section>
 
 <section>
   <div class="wrap">
     <div class="divider"><span class="line"></span><svg class="halo-horseshoe" viewBox="0 0 80 90" aria-hidden="true"><circle cx="40" cy="42" r="34" fill="none" stroke="currentColor" stroke-width="1.4" stroke-dasharray="2 5" opacity=".55"/><path d="M14,55 A26,26 0 1,1 66,55" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round"/><circle cx="14" cy="55" r="3.2" fill="currentColor"/><circle cx="66" cy="55" r="3.2" fill="currentColor"/></svg><span class="line"></span></div>
-    <h2 style="text-align:center;">Nomination Form</h2>
-    <form id="saint-form" style="margin:0 auto 56px;">
+    <h2 style="text-align:center;">Prayer Request Form</h2>
+    <form id="prayer-form" style="margin:0 auto;">
       <div class="field">
-        <label for="s-horse">Horse's name</label>
-        <input type="text" id="s-horse" name="Horse name" required>
+        <label for="p-name">Your name (optional)</label>
+        <input type="text" id="p-name" name="Name" placeholder="Leave blank to submit anonymously">
       </div>
       <div class="field">
-        <label for="s-nom">Your name</label>
-        <input type="text" id="s-nom" name="Nominator name" required>
+        <label for="p-email">Email address (optional)</label>
+        <input type="email" id="p-email" name="Email">
+        <p class="help">Only needed if you'd like a personal reply from our clergy.</p>
       </div>
       <div class="field">
-        <label for="s-email">Your email</label>
-        <input type="email" id="s-email" name="Email" required>
+        <label for="p-request">Your prayer request</label>
+        <textarea id="p-request" name="Prayer Request" required placeholder="Share what's on your heart..."></textarea>
       </div>
       <div class="field">
-        <label for="s-story">Why does this horse deserve sainthood?</label>
-        <textarea id="s-story" name="Story" required></textarea>
+        <label for="p-visibility">How should we hold this request?</label>
+        <select id="p-visibility" name="Visibility">
+          <option>Keep this private (clergy only)</option>
+          <option>Share with our prayer circle (no names used)</option>
+        </select>
       </div>
-      <div class="field">
-        <label for="s-photo">Photo (optional)</label>
-        <input type="file" id="s-photo" name="Photo" accept="image/*">
-        <p class="help">Photo upload is a placeholder for now &mdash; email your photo after submitting.</p>
-      </div>
-      <button type="submit" class="btn btn-solid">Submit Nomination</button>
-      <p class="formnote">Submitting will open your email client with your nomination details, addressed to our sainthood committee (placeholder).</p>
+      <button type="submit" class="btn btn-solid">Submit Prayer Request</button>
+      <p class="formnote">Submitting will open your email client with your request pre-filled, addressed to our prayer ministry (placeholder). No message is sent automatically.</p>
     </form>
-
-    <div class="divider"><span class="line"></span><svg class="halo-horseshoe" viewBox="0 0 80 90" aria-hidden="true"><circle cx="40" cy="42" r="34" fill="none" stroke="currentColor" stroke-width="1.4" stroke-dasharray="2 5" opacity=".55"/><path d="M14,55 A26,26 0 1,1 66,55" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round"/><circle cx="14" cy="55" r="3.2" fill="currentColor"/><circle cx="66" cy="55" r="3.2" fill="currentColor"/></svg><span class="line"></span></div>
-    <h2 style="text-align:center;">Gallery of the Canonized</h2>
-    <p style="text-align:center;margin:0 auto 30px;color:var(--purple-royal);">Placeholder entries &mdash; real nominees will appear here as they're canonized.</p>
-    <div class="grid3">
-      <div class="card"><svg class="halo-horseshoe" viewBox="0 0 80 90" aria-hidden="true"><circle cx="40" cy="42" r="34" fill="none" stroke="currentColor" stroke-width="1.4" stroke-dasharray="2 5" opacity=".55"/><path d="M14,55 A26,26 0 1,1 66,55" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round"/><circle cx="14" cy="55" r="3.2" fill="currentColor"/><circle cx="66" cy="55" r="3.2" fill="currentColor"/></svg><h3>St. Copper the Patient</h3><p>Canonized for a lifetime of carrying first-time riders with unwavering gentleness.</p></div>
-      <div class="card"><svg class="halo-horseshoe" viewBox="0 0 80 90" aria-hidden="true"><circle cx="40" cy="42" r="34" fill="none" stroke="currentColor" stroke-width="1.4" stroke-dasharray="2 5" opacity=".55"/><path d="M14,55 A26,26 0 1,1 66,55" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round"/><circle cx="14" cy="55" r="3.2" fill="currentColor"/><circle cx="66" cy="55" r="3.2" fill="currentColor"/></svg><h3>St. Willow the Watchful</h3><p>Canonized for guarding the herd through storm and hardship, year after year.</p></div>
-      <div class="card"><svg class="halo-horseshoe" viewBox="0 0 80 90" aria-hidden="true"><circle cx="40" cy="42" r="34" fill="none" stroke="currentColor" stroke-width="1.4" stroke-dasharray="2 5" opacity=".55"/><path d="M14,55 A26,26 0 1,1 66,55" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round"/><circle cx="14" cy="55" r="3.2" fill="currentColor"/><circle cx="66" cy="55" r="3.2" fill="currentColor"/></svg><h3>St. Duke the Faithful</h3><p>Canonized for thirty years of faithful partnership with the same family.</p></div>
-    </div>
   </div>
 </section>
 
@@ -236,6 +226,6 @@ function mailSubmit(e, formEl, toAddress, subject){
   var note = formEl.querySelector('.formnote');
   if(note){ note.textContent = 'Your email client should now be open with these details pre-filled. If nothing happens, email us directly at ' + toAddress + '.'; }
 }
-document.getElementById('saint-form')?.addEventListener('submit', function(e){ mailSubmit(e, this, 'sainthood@horseschurch.org', 'Sainthood Nomination'); });</script>
+document.getElementById('prayer-form')?.addEventListener('submit', function(e){ mailSubmit(e, this, 'prayers@horseschurch.org', 'Prayer Request'); });</script>
 </body>
 </html>
