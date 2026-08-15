@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Theology | H.O.R.S.E.S. Church</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,500;1,500&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --purple-deep:#241333;
+  --purple-royal:#4B2578;
+  --purple-mid:#6B3FA0;
+  --gold:#C9A227;
+  --gold-light:#E8CD6D;
+  --parchment:#F7F1E1;
+  --parchment-dim:#EFE6CE;
+  --ink:#2A1B3D;
+  --lavender:#EDE3F5;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'EB Garamond',Georgia,serif;background:var(--parchment);color:var(--ink);line-height:1.7;}
+h1,h2,h3,.wordmark,.btn,nav a,.eyebrow-caps{font-family:'Cinzel',Georgia,serif;}
+h1,h2,h3{color:var(--purple-deep);letter-spacing:.02em;font-weight:600;}
+h1{font-size:2.6rem;line-height:1.15;}
+h2{font-size:1.9rem;margin-bottom:.6em;}
+h3{font-size:1.25rem;}
+p{margin-bottom:1em;max-width:66ch;}
+a{color:var(--purple-royal);text-decoration:none;}
+.eyebrow{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;letter-spacing:.18em;text-transform:uppercase;color:var(--purple-mid);font-size:.85rem;display:block;margin-bottom:.5em;}
+.wrap{max-width:1080px;margin:0 auto;padding:0 28px;}
+.halo-horseshoe{width:1em;height:1em;display:inline-block;vertical-align:middle;}
+
+/* ---- top bar ---- */
+.topbar{background:var(--purple-deep);border-bottom:3px solid var(--gold);}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;padding-top:14px;padding-bottom:14px;}
+.brand{display:flex;align-items:center;gap:10px;color:var(--gold-light);}
+.brand .halo-horseshoe{width:30px;height:30px;color:var(--gold);}
+.brand-text{color:var(--gold-light);font-size:1.15rem;letter-spacing:.12em;}
+.brand-text small{display:block;font-family:'Cormorant Garamond',serif;font-style:italic;letter-spacing:.02em;color:#cbb8e6;font-size:.62rem;text-transform:none;margin-top:2px;}
+nav{display:flex;gap:22px;flex-wrap:wrap;}
+nav a{color:#E9DFF5;font-size:.78rem;letter-spacing:.09em;text-transform:uppercase;padding:6px 2px;border-bottom:2px solid transparent;}
+nav a:hover,nav a.active{color:var(--gold-light);border-bottom-color:var(--gold);}
+
+/* ---- banner ---- */
+.banner{background:linear-gradient(90deg,var(--gold-light),var(--gold));color:var(--purple-deep);}
+.banner .wrap{padding:12px 28px;display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap;text-align:center;}
+.banner p{margin:0;font-family:'Cinzel',serif;font-size:.8rem;letter-spacing:.04em;}
+.banner .btns{display:flex;gap:10px;flex-wrap:wrap;}
+
+/* ---- buttons ---- */
+.btn{display:inline-block;font-size:.75rem;letter-spacing:.09em;text-transform:uppercase;padding:11px 22px;border-radius:2px;border:1.5px solid var(--purple-deep);cursor:pointer;}
+.btn-solid{background:var(--purple-deep);color:var(--gold-light);border-color:var(--purple-deep);}
+.btn-solid:hover{background:var(--purple-royal);}
+.btn-outline{background:transparent;color:var(--purple-deep);border-color:var(--purple-deep);}
+.btn-outline:hover{background:var(--purple-deep);color:var(--gold-light);}
+.btn-gold{background:var(--purple-deep);color:var(--gold-light);border-color:var(--purple-deep);}
+.banner .btn-outline{border-color:var(--purple-deep);color:var(--purple-deep);}
+.banner .btn-outline:hover{background:var(--purple-deep);color:var(--gold-light);}
+
+/* ---- hero ---- */
+.hero{padding:72px 0 56px;background:radial-gradient(ellipse at top,var(--lavender) 0%,var(--parchment) 62%);text-align:center;}
+.hero .halo-horseshoe{width:56px;height:56px;color:var(--gold);margin-bottom:18px;}
+.hero h1{max-width:820px;margin:0 auto .4em;}
+.hero .lede{max-width:640px;margin:0 auto 1.6em;font-size:1.15rem;color:var(--purple-royal);}
+.hero .btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+
+/* ---- page header (non-home) ---- */
+.pagehead{padding:52px 0 34px;text-align:center;background:linear-gradient(180deg,var(--lavender),var(--parchment));}
+.pagehead .halo-horseshoe{width:42px;height:42px;color:var(--gold);margin-bottom:12px;}
+.pagehead p.lede{max-width:620px;margin:.6em auto 0;color:var(--purple-royal);}
+
+/* ---- sections & dividers ---- */
+section{padding:56px 0;}
+.divider{display:flex;align-items:center;gap:16px;justify-content:center;margin:0 0 40px;color:var(--gold);}
+.divider .line{height:1px;width:90px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
+.divider .halo-horseshoe{width:26px;height:26px;}
+.panel{background:#fff;border:1px solid var(--parchment-dim);border-left:4px solid var(--gold);border-radius:2px;padding:28px 30px;}
+.panel-lav{background:var(--lavender);}
+
+/* ---- grid cards ---- */
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;}
+@media (max-width:820px){.grid3,.grid2{grid-template-columns:1fr;}}
+.card{background:#fff;border:1px solid var(--parchment-dim);padding:26px 24px;border-radius:2px;position:relative;}
+.card .halo-horseshoe{width:28px;height:28px;color:var(--gold);margin-bottom:12px;}
+.card h3{margin-bottom:.4em;}
+
+/* package cards */
+.pkg{background:#fff;border:2px solid var(--parchment-dim);padding:28px 24px;text-align:center;display:flex;flex-direction:column;}
+.pkg.featured{border-color:var(--gold);box-shadow:0 6px 22px rgba(75,37,120,.12);}
+.pkg .price{font-family:'Cinzel',serif;font-size:2rem;color:var(--purple-deep);margin:.3em 0;}
+.pkg .price small{font-size:.9rem;font-family:'EB Garamond',serif;color:var(--purple-mid);}
+.pkg ul{list-style:none;margin:14px 0 22px;text-align:left;flex:1;}
+.pkg li{padding:6px 0;border-bottom:1px dashed var(--parchment-dim);font-size:.95rem;}
+.pkg .tag{align-self:center;background:var(--gold);color:var(--purple-deep);font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;margin-bottom:10px;}
+
+/* ---- forms ---- */
+form{background:#fff;border:1px solid var(--parchment-dim);padding:30px;max-width:640px;}
+.field{margin-bottom:18px;}
+label{display:block;font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--purple-royal);margin-bottom:6px;}
+input,select,textarea{width:100%;padding:11px 12px;border:1px solid #cbb8e6;background:var(--lavender);font-family:'EB Garamond',serif;font-size:1rem;color:var(--ink);border-radius:2px;}
+textarea{min-height:120px;resize:vertical;}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--gold);outline-offset:1px;}
+.help{font-size:.85rem;color:#6a5a80;margin-top:4px;}
+.formnote{font-size:.85rem;color:var(--purple-mid);margin-top:14px;}
+
+/* ---- faq ---- */
+.faq-item{border-bottom:1px solid var(--parchment-dim);padding:18px 0;}
+.faq-item summary{font-family:'Cinzel',serif;font-size:1rem;cursor:pointer;color:var(--purple-deep);}
+.faq-item p{margin-top:10px;color:#4a3960;}
+
+/* ---- disclosure ---- */
+.disclosure{background:var(--lavender);border:1px solid #d8c7ef;padding:20px 24px;font-size:.88rem;color:#4a3960;margin-top:20px;}
+.disclosure strong{color:var(--purple-deep);}
+
+/* ---- footer ---- */
+footer{background:var(--purple-deep);color:#cbb8e6;padding:44px 0 26px;}
+footer .cols{display:grid;grid-template-columns:2fr 1fr 1fr;gap:30px;margin-bottom:30px;}
+@media (max-width:720px){footer .cols{grid-template-columns:1fr;}}
+footer h4{font-family:'Cinzel',serif;color:var(--gold-light);font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px;}
+footer a{color:#cbb8e6;font-size:.92rem;display:block;margin-bottom:8px;}
+footer a:hover{color:var(--gold-light);}
+footer .brand-text{color:var(--gold-light);}
+footer .foot-bottom{border-top:1px solid #4a3568;padding-top:18px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:.78rem;color:#9c88b8;}
+footer .faq-btn{display:inline-block;background:var(--gold);color:var(--purple-deep);font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;padding:9px 18px;margin-top:4px;}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a href="index.html" class="brand"><svg class="halo-horseshoe" viewBox="0 0 80 90" aria-hidden="true"><circle cx="40" cy="42" r="34" fill="none" stroke="currentColor" stroke-width="1.4" stroke-dasharray="2 5" opacity=".55"/><path d="M14,55 A26,26 0 1,1 66,55" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round"/><circle cx="14" cy="55" r="3.2" fill="currentColor"/><circle cx="66" cy="55" r="3.2" fill="currentColor"/></svg><span class="brand-text">H.O.R.S.E.S. CHURCH<small>Harmonious Omni Religious Sanctum for Equine Sanctuary</small></span></a>
+    <nav><a href="index.html">Home</a><a href="theology.html" class="active">Theology</a><a href="ordination.html">Ordination</a><a href="membership.html">Membership</a><a href="sainthood.html">Sainthood</a><a href="donate.html">Donate</a><a href="faq.html">FAQ</a></nav>
+  </div>
+</header>
+<div class="banner">
+  <div class="wrap">
+    <p>&#10022; Ordination is free and takes two minutes &mdash; become a duly ordained minister today. &#10022;</p>
+    <div class="btns">
+      <a href="ordination.html" class="btn btn-solid">Get Ordained Free</a>
+      <a href="ordination.html#packages" class="btn btn-outline">Certificate Packages</a>
+    </div>
+  </div>
+</div>
+
+
+<section class="pagehead">
+  <div class="wrap">
+    <svg class="halo-horseshoe" viewBox="0 0 80 90" aria-hidden="true"><circle cx="40" cy="42" r="34" fill="none" stroke="currentColor" stroke-width="1.4" stroke-dasharray="2 5" opacity=".55"/><path d="M14,55 A26,26 0 1,1 66,55" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round"/><circle cx="14" cy="55" r="3.2" fill="currentColor"/><circle cx="66" cy="55" r="3.2" fill="currentColor"/></svg>
+    <span class="eyebrow">Doctrine</span>
+    <h1>The Theology of H.O.R.S.E.S. Church</h1>
+    <p class="lede">An omni-faith tradition centered on the divinity present in the horse, and the sacred duty of those who care for them.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="panel" style="margin-bottom:26px;">
+      <span class="eyebrow">I. Mystical Union</span>
+      <h2>All things are extensions of the one godliness</h2>
+      <p>H.O.R.S.E.S. Church teaches that all living things are extensions of a single, unifying godliness &mdash; not separate from the divine, but woven from it. Every creature is understood as a strand of one continuous sacred fabric, and every act of care for a living being is, in a small way, an act of communion with that whole.</p>
+    </div>
+
+    <div class="panel panel-lav" style="margin-bottom:26px;">
+      <span class="eyebrow">II. The Divine Spark in the Horse</span>
+      <h2>Horses are divine through mystical union</h2>
+      <p>Among all creatures, we hold that horses carry this spark with particular clarity. Their strength held in gentleness, their trust freely given, and their long companionship with humankind are read, in our tradition, as signs of a mystical union between the horse and the divine. To minister to a horse is to minister to something sacred.</p>
+    </div>
+
+    <div class="panel" style="margin-bottom:26px;">
+      <span class="eyebrow">III. Divine History of Equines</span>
+      <h2>Equines in eschatology and human history</h2>
+      <p>Our tradition draws on the long thread of the horse through human history and belief &mdash; as companion, as symbol of the soul's journey, and as a figure that recurs across humanity's stories of endings and renewals. H.O.R.S.E.S. Church does not claim to speak for any other faith's scripture; rather, we read this long and recurring presence of the horse as evidence of the mystical union at the center of our own teaching, and as the foundation for our eschatology &mdash; our understanding of the horse's place in the final things.</p>
+    </div>
+
+    <div class="panel panel-lav" style="margin-bottom:26px;" id="covenant">
+      <span class="eyebrow">IV. The Sacred Covenant</span>
+      <h2>A spiritual commitment for the horse's lifetime</h2>
+      <p>A Covenant is the spiritual heart of our practice: a solemn, personal commitment that a horse owner or caretaker makes over the horses in their charge, dedicating that care to the divine union described above. A Covenant is intended to hold for the whole of the horse's life, and the church records and keeps it as a spiritual document.</p>
+      <p class="help">A Covenant is a statement of faith and personal commitment, not a legal instrument. It does not itself change ownership, custody, or any legal right over an animal. Congregants who want a covenant to carry legal weight should have it prepared by an attorney in their state.</p>
+    </div>
+
+    <div class="panel" id="ministry">
+      <span class="eyebrow">V. The Ministry's Duty</span>
+      <h2>To protect and minister to humanity and horses</h2>
+      <p>It is the sacred duty of every duly ordained minister of H.O.R.S.E.S. Church to protect and minister to both humanity and horses &mdash; through counsel, through presence, through the keeping of Covenants, and through the ongoing work of equine sanctuary and rescue.</p>
+    </div>
+  </div>
+</section>
+
+
+<footer>
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <h4 class="brand-text">H.O.R.S.E.S. Church</h4>
+        <p style="max-width:42ch;color:#cbb8e6;">The Harmonious Omni Religious Sanctum for Equine Sanctuary &mdash; ministering to the sacred bond between horses and the people who tend them.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <a href="theology.html">Our Theology</a>
+        <a href="ordination.html">Get Ordained</a>
+        <a href="membership.html">Membership</a>
+        <a href="sainthood.html">Sainthood Nominations</a>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <a href="donate.html">Donate</a>
+        <a href="faq.html" class="faq-btn">Frequently Asked Questions</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; H.O.R.S.E.S. Church. Placeholder site &mdash; contact and legal details to be finalized.</span>
+      <span>info@horseschurch.org (placeholder)</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+function mailSubmit(e, formEl, toAddress, subject){
+  e.preventDefault();
+  var data = new FormData(formEl);
+  var lines = [];
+  data.forEach(function(v,k){ lines.push(k + ': ' + v); });
+  var body = encodeURIComponent(lines.join('\n'));
+  var href = 'mailto:' + toAddress + '?subject=' + encodeURIComponent(subject) + '&body=' + body;
+  window.location.href = href;
+  var note = formEl.querySelector('.formnote');
+  if(note){ note.textContent = 'Your email client should now be open with these details pre-filled. If nothing happens, email us directly at ' + toAddress + '.'; }
+}
+</script>
+</body>
+</html>
