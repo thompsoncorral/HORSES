@@ -7,15 +7,15 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,500;1,500&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 <style>
 :root{
-  --purple-deep:#241333;
-  --purple-royal:#4B2578;
-  --purple-mid:#6B3FA0;
-  --gold:#C9A227;
-  --gold-light:#E8CD6D;
-  --parchment:#F7F1E1;
-  --parchment-dim:#EFE6CE;
-  --ink:#2A1B3D;
-  --lavender:#EDE3F5;
+--purple-deep:#241333;
+--purple-royal:#4B2578;
+--purple-mid:#6B3FA0;
+--gold:#C9A227;
+--gold-light:#E8CD6D;
+--parchment:#F7F1E1;
+--parchment-dim:#EFE6CE;
+--ink:#2A1B3D;
+--lavender:#EDE3F5;
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
@@ -106,6 +106,10 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--gold);outline-of
 .help{font-size:.85rem;color:#6a5a80;margin-top:4px;}
 .formnote{font-size:.85rem;color:var(--purple-mid);margin-top:14px;}
 
+/* ---- form embed (Google Form) ---- */
+.form-embed{background:#fff;border:1px solid var(--parchment-dim);border-radius:2px;overflow:hidden;max-width:640px;margin:0 auto;box-shadow:0 4px 18px rgba(75,37,120,.08);}
+.form-embed iframe{display:block;width:100%;border:0;}
+
 /* ---- faq ---- */
 .faq-item{border-bottom:1px solid var(--parchment-dim);padding:18px 0;}
 .faq-item summary{font-family:'Cinzel',serif;font-size:1rem;cursor:pointer;color:var(--purple-deep);}
@@ -130,108 +134,72 @@ footer .faq-btn{display:inline-block;background:var(--gold);color:var(--purple-d
 <body>
 
 <header class="topbar">
-  <div class="wrap">
-    <a href="index.html" class="brand"><img class="brand-crest" src="assets/img/horses-crest.jpg" alt="H.O.R.S.E.S. Church crest"><span class="brand-text">H.O.R.S.E.S. CHURCH<small>Harmonious Omni Religious Sanctum for Equine Sanctuary</small></span></a>
-    <nav><a href="index.html">Home</a><a href="theology.html">Theology</a><a href="ordination.html">Ordination</a><a href="membership.html">Membership</a><a href="sainthood.html" class="active">Sainthood</a><a href="donate.html">Donate</a><a href="faq.html">FAQ</a><a href="prayer.html">Prayer</a></nav>
-  </div>
+<div class="wrap">
+<a href="index.html" class="brand"><img class="brand-crest" src="assets/img/horses-crest.jpg" alt="H.O.R.S.E.S. Church crest"><span class="brand-text">H.O.R.S.E.S. CHURCH<small>Harmonious Omni Religious Sanctum for Equine Sanctuary</small></span></a>
+<nav><a href="index.html">Home</a><a href="theology.html">Theology</a><a href="ordination.html">Ordination</a><a href="membership.html">Membership</a><a href="sainthood.html" class="active">Sainthood</a><a href="donate.html">Donate</a><a href="faq.html">FAQ</a><a href="prayer.html">Prayer</a></nav>
+</div>
 </header>
 <div class="banner">
-  <div class="wrap">
-    <p>&#10022; Ordination is free and takes two minutes &mdash; become a duly ordained minister today. &#10022;</p>
-    <div class="btns">
-      <a href="ordination.html" class="btn btn-solid">Get Ordained Free</a>
-      <a href="ordination.html#packages" class="btn btn-outline">Certificate Packages</a>
-    </div>
-  </div>
+<div class="wrap">
+<p>&#10022; Ordination is free and takes two minutes &mdash; become a duly ordained minister today. &#10022;</p>
+<div class="btns">
+<a href="ordination.html" class="btn btn-solid">Get Ordained Free</a>
+<a href="ordination.html#packages" class="btn btn-outline">Certificate Packages</a>
+</div>
+</div>
 </div>
 
-
 <section class="pagehead">
-  <div class="wrap">
-    <img class="pagehead-banner" src="assets/img/ChatGPT Image Aug 19, 2026, 08_02_22 AM.png" alt="H.O.R.S.E.S. Church crest banner">
-    <span class="eyebrow">A Joyful Tradition</span>
-    <h1>Nominate a Horse for Sainthood</h1>
-    <p class="lede">Every horse leaves a mark on the humans who love it. Nominate a horse in your life &mdash; living or departed &mdash; for a place among the canonized.</p>
-  </div>
+<div class="wrap">
+<img class="pagehead-banner" src="assets/img/ChatGPT Image Aug 19, 2026, 08_02_22 AM.png" alt="H.O.R.S.E.S. Church crest banner">
+<span class="eyebrow">A Joyful Tradition</span>
+<h1>Nominate a Horse for Sainthood</h1>
+<p class="lede">Every horse leaves a mark on the humans who love it. Nominate a horse in your life &mdash; living or departed &mdash; for a place among the canonized.</p>
+</div>
 </section>
 
 <section>
-  <div class="wrap">
-    <div class="divider"><span class="line"></span><svg class="halo-horseshoe" viewBox="0 0 80 90" aria-hidden="true"><circle cx="40" cy="42" r="34" fill="none" stroke="currentColor" stroke-width="1.4" stroke-dasharray="2 5" opacity=".55"/><path d="M14,55 A26,26 0 1,1 66,55" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round"/><circle cx="14" cy="55" r="3.2" fill="currentColor"/><circle cx="66" cy="55" r="3.2" fill="currentColor"/></svg><span class="line"></span></div>
-    <h2 style="text-align:center;">Nomination Form</h2>
-    <form id="saint-form" style="margin:0 auto 56px;">
-      <div class="field">
-        <label for="s-horse">Horse's name</label>
-        <input type="text" id="s-horse" name="Horse name" required>
-      </div>
-      <div class="field">
-        <label for="s-nom">Your name</label>
-        <input type="text" id="s-nom" name="Nominator name" required>
-      </div>
-      <div class="field">
-        <label for="s-email">Your email</label>
-        <input type="email" id="s-email" name="Email" required>
-      </div>
-      <div class="field">
-        <label for="s-story">Why does this horse deserve sainthood?</label>
-        <textarea id="s-story" name="Story" required></textarea>
-      </div>
-      <div class="field">
-        <label for="s-photo">Photo (optional)</label>
-        <input type="file" id="s-photo" name="Photo" accept="image/*">
-        <p class="help">Photo upload is a placeholder for now &mdash; email your photo after submitting.</p>
-      </div>
-      <button type="submit" class="btn btn-solid">Submit Nomination</button>
-      <p class="formnote">Submitting will open your email client with your nomination details, addressed to our sainthood committee (placeholder).</p>
-    </form>
+<div class="wrap">
+<div class="divider"><span class="line"></span><svg class="halo-horseshoe" viewBox="0 0 80 90" aria-hidden="true"><circle cx="40" cy="42" r="34" fill="none" stroke="currentColor" stroke-width="1.4" stroke-dasharray="2 5" opacity=".55"/><path d="M14,55 A26,26 0 1,1 66,55" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round"/><circle cx="14" cy="55" r="3.2" fill="currentColor"/><circle cx="66" cy="55" r="3.2" fill="currentColor"/></svg><span class="line"></span></div>
+<h2 style="text-align:center;">Nomination Form</h2>
+<div class="form-embed" style="margin:0 auto;">
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLScGhnAnAwNxfHknzOp4J-Ov8ukhtL0DNJ7goe0YFX_Mb02qGA/viewform?embedded=true" width="100%" height="1400" frameborder="0" marginheight="0" marginwidth="0">Loading&hellip;</iframe>
+</div>
+<p class="formnote" style="text-align:center;max-width:640px;margin:14px auto 56px;">Form not loading? <a href="https://docs.google.com/forms/d/e/1FAIpQLScGhnAnAwNxfHknzOp4J-Ov8ukhtL0DNJ7goe0YFX_Mb02qGA/viewform" target="_blank" rel="noopener">Open the nomination form in a new tab</a>.</p>
 
-    <div class="divider"><span class="line"></span><svg class="halo-horseshoe" viewBox="0 0 80 90" aria-hidden="true"><circle cx="40" cy="42" r="34" fill="none" stroke="currentColor" stroke-width="1.4" stroke-dasharray="2 5" opacity=".55"/><path d="M14,55 A26,26 0 1,1 66,55" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round"/><circle cx="14" cy="55" r="3.2" fill="currentColor"/><circle cx="66" cy="55" r="3.2" fill="currentColor"/></svg><span class="line"></span></div>
-    <h2 style="text-align:center;">Ecclesiastical Tenets for Nominations</h2>
-    <p style="text-align:center;margin:0 auto 30px;color:var(--purple-royal);">Placeholder entries &mdash; real nominees will appear here as they're canonized.</p>
-  </div>
+<div class="divider"><span class="line"></span><svg class="halo-horseshoe" viewBox="0 0 80 90" aria-hidden="true"><circle cx="40" cy="42" r="34" fill="none" stroke="currentColor" stroke-width="1.4" stroke-dasharray="2 5" opacity=".55"/><path d="M14,55 A26,26 0 1,1 66,55" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round"/><circle cx="14" cy="55" r="3.2" fill="currentColor"/><circle cx="66" cy="55" r="3.2" fill="currentColor"/></svg><span class="line"></span></div>
+<h2 style="text-align:center;">Ecclesiastical Tenets for Nominations</h2>
+<p style="text-align:center;margin:0 auto 30px;color:var(--purple-royal);">Placeholder entries &mdash; real nominees will appear here as they're canonized.</p>
+</div>
 </section>
 
-
 <footer>
-  <div class="wrap">
-    <div class="cols">
-      <div>
-        <h4 class="brand-text">H.O.R.S.E.S. Church</h4>
-        <p style="max-width:42ch;color:#cbb8e6;">The Harmonious Omni Religious Sanctum for Equine Sanctuary &mdash; ministering to the sacred bond between horses and the people who tend them.</p>
-      </div>
-      <div>
-        <h4>Explore</h4>
-        <a href="theology.html">Our Theology</a>
-        <a href="ordination.html">Get Ordained</a>
-        <a href="membership.html">Membership</a>
-        <a href="sainthood.html">Sainthood Nominations</a>
-      </div>
-      <div>
-        <h4>Support</h4>
-        <a href="donate.html">Donate</a>
-        <a href="faq.html">Frequently Asked Questions</a>
-        <a href="prayer.html" class="faq-btn">Submit a Prayer Request</a>
-      </div>
-    </div>
-    <div class="foot-bottom">
-      <span>&copy; H.O.R.S.E.S. Church. Placeholder site &mdash; contact and legal details to be finalized.</span>
-      <span>info@horseschurch.org (placeholder)</span>
-    </div>
-  </div>
+<div class="wrap">
+<div class="cols">
+<div>
+<h4 class="brand-text">H.O.R.S.E.S. Church</h4>
+<p style="max-width:42ch;color:#cbb8e6;">The Harmonious Omni Religious Sanctum for Equine Sanctuary &mdash; ministering to the sacred bond between horses and the people who tend them.</p>
+</div>
+<div>
+<h4>Explore</h4>
+<a href="theology.html">Our Theology</a>
+<a href="ordination.html">Get Ordained</a>
+<a href="membership.html">Membership</a>
+<a href="sainthood.html">Sainthood Nominations</a>
+</div>
+<div>
+<h4>Support</h4>
+<a href="donate.html">Donate</a>
+<a href="faq.html">Frequently Asked Questions</a>
+<a href="prayer.html" class="faq-btn">Submit a Prayer Request</a>
+</div>
+</div>
+<div class="foot-bottom">
+<span>&copy; H.O.R.S.E.S. Church. Placeholder site &mdash; contact and legal details to be finalized.</span>
+<span>info@horseschurch.org (placeholder)</span>
+</div>
+</div>
 </footer>
 
-<script>
-function mailSubmit(e, formEl, toAddress, subject){
-  e.preventDefault();
-  var data = new FormData(formEl);
-  var lines = [];
-  data.forEach(function(v,k){ lines.push(k + ': ' + v); });
-  var body = encodeURIComponent(lines.join('\n'));
-  var href = 'mailto:' + toAddress + '?subject=' + encodeURIComponent(subject) + '&body=' + body;
-  window.location.href = href;
-  var note = formEl.querySelector('.formnote');
-  if(note){ note.textContent = 'Your email client should now be open with these details pre-filled. If nothing happens, email us directly at ' + toAddress + '.'; }
-}
-document.getElementById('saint-form')?.addEventListener('submit', function(e){ mailSubmit(e, this, 'sainthood@horseschurch.org', 'Sainthood Nomination'); });</script>
 </body>
 </html>
