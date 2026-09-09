@@ -184,7 +184,8 @@ footer .faq-btn{display:inline-block;background:var(--gold);color:var(--purple-d
         <textarea id="m-note" name="Note"></textarea>
       </div>
       <button type="submit" class="btn btn-solid">Submit Membership Request</button>
-      <p class="formnote">Submitting will open your email client with your details, addressed to our membership office (placeholder).</p>
+      <p class="formnote" id="m-note">Your request is sent securely to the church office &mdash; no email client needed. You'll see a confirmation below.</p>
+      <p class="formnote" id="m-done" style="display:none;color:var(--purple-deep);">&#10022; Thank you! Your membership request has been received &mdash; the church office will be in touch at the email you provided.</p>
     </form>
   </div>
 </section>
@@ -219,17 +220,28 @@ footer .faq-btn{display:inline-block;background:var(--gold);color:var(--purple-d
 </footer>
 
 <script>
-function mailSubmit(e, formEl, toAddress, subject){
+// Membership request -> Formspree in the background (no navigation, no email client popup),
+// so the visitor sees an on-page confirmation instead of leaving the site.
+var MEMBERSHIP_ENDPOINT = 'https://formspree.io/f/xyeylpnb';
+
+document.getElementById('member-form').addEventListener('submit', function(e){
   e.preventDefault();
-  var data = new FormData(formEl);
-  var lines = [];
-  data.forEach(function(v,k){ lines.push(k + ': ' + v); });
-  var body = encodeURIComponent(lines.join('\n'));
-  var href = 'mailto:' + toAddress + '?subject=' + encodeURIComponent(subject) + '&body=' + body;
-  window.location.href = href;
-  var note = formEl.querySelector('.formnote');
-  if(note){ note.textContent = 'Your email client should now be open with these details pre-filled. If nothing happens, email us directly at ' + toAddress + '.'; }
-}
-document.getElementById('member-form')?.addEventListener('submit', function(e){ mailSubmit(e, this, 'membership@horseschurch.org', 'Membership Request'); });</script>
+  var form = this;
+  if(!form.checkValidity()){ form.reportValidity(); return; }
+  var data = new FormData(form);
+  data.append('_subject', 'Membership Request');
+  fetch(MEMBERSHIP_ENDPOINT, {
+    method: 'POST',
+    body: data,
+    headers: { 'Accept': 'application/json' }
+  }).then(function(resp){
+    form.style.display = 'none';
+    document.getElementById('m-done').style.display = 'block';
+  }).catch(function(err){
+    var note = document.getElementById('m-note');
+    if(note){ note.textContent = 'Something went wrong sending your request. Please email us at info@horseschurch.org.'; }
+    console.error('Membership form submission failed:', err);
+  });
+});</script>
 </body>
 </html>

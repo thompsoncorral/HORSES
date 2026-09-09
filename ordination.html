@@ -284,7 +284,7 @@ footer .faq-btn{display:inline-block;background:var(--gold);color:var(--purple-d
     <!-- Unlocked packages: hidden until confirmed -->
     <div id="packages-unlocked" style="display:none;">
       <p id="packages-greeting" style="text-align:center;margin:0 auto 8px;color:var(--purple-deep);font-family:'Cinzel',serif;font-size:1rem;"></p>
-      <p style="text-align:center;margin:0 auto 34px;color:var(--purple-royal);">Ordination itself is always free. Everything below is an optional keepsake. <strong>All names and prices shown are placeholders</strong> pending final decisions and Stripe setup.</p>
+      <p style="text-align:center;margin:0 auto 8px;color:var(--purple-royal);">Ordination itself is always free &mdash; it takes two minutes and needs nothing beyond the details you just confirmed. The certificate and letter below are optional keepsakes, delivered digitally or printed &amp; mailed.</p>
 
       <p class="step-heading">1. Choose Your Package</p>
       <div class="grid3" style="margin-bottom:28px;" id="package-grid">
@@ -293,42 +293,40 @@ footer .faq-btn{display:inline-block;background:var(--gold);color:var(--purple-d
           <h3>Free Ordination</h3>
           <div class="price">$0</div>
           <ul>
-            <li>Ordination on record</li>
+            <li>Ordination recorded in the church register</li>
             <li>Digital confirmation email</li>
-            <li>Right to perform equine blessings</li>
+            <li>Right to perform equine blessings and pastoral services per church teaching</li>
           </ul>
         </label>
 
-        <label class="pkg pkg-option featured" data-package="standard" data-digital-price="9" data-digital-label="$9 (example)" data-physical-price="19" data-physical-label="$19 (example)">
-          <input type="radio" name="base-package" value="standard">
+        <label class="pkg pkg-option featured" data-package="cert" data-digital-price="15" data-physical-price="25">
+          <input type="radio" name="base-package" value="cert">
           <span class="tag">Most Chosen</span>
-          <span class="placeholder-badge">Example name/price</span>
-          <h3>[Example Name] Standard Ordination Certificate</h3>
+          <h3>Ordination Certificate</h3>
           <p class="tagline">A commemorative record of your ordination.</p>
           <div class="price-lines">
-            <div>Digital: <strong>$9</strong> <small>(example)</small></div>
-            <div>Printed &amp; Mailed: <strong>$19</strong> <small>(example)</small></div>
+            <div>Digital: <strong>$15</strong></div>
+            <div>Printed &amp; Mailed: <strong>$25</strong></div>
           </div>
           <ul>
-            <li>Personalized with your legal name</li>
-            <li>Digital: instant download + email</li>
-            <li>Printed: mailed on card stock (manual fulfillment for now)</li>
+            <li>Personalized with legal name, ordination date &amp; registration number</li>
+            <li>Digital: PDF by email, usually the same day</li>
+            <li>Printed: mailed on heavy card stock, ~5&ndash;7 business days</li>
           </ul>
         </label>
 
-        <label class="pkg pkg-option" data-package="premium" data-digital-price="15" data-digital-label="$15 (example)" data-physical-price="29" data-physical-label="$29 (example)">
-          <input type="radio" name="base-package" value="premium">
-          <span class="placeholder-badge">Example name/price</span>
-          <h3>[Example Name] Premium Ordination Certificate</h3>
-          <p class="tagline">An upgraded, display-ready version.</p>
+        <label class="pkg pkg-option" data-package="letter" data-digital-price="15" data-physical-price="18">
+          <input type="radio" name="base-package" value="letter">
+          <h3>Letter of Good Standing</h3>
+          <p class="tagline">Confirms your ordination is current and in good standing.</p>
           <div class="price-lines">
-            <div>Digital: <strong>$15</strong> <small>(example)</small></div>
-            <div>Printed &amp; Mailed: <strong>$29</strong> <small>(example)</small></div>
+            <div>Digital: <strong>$15</strong></div>
+            <div>Printed &amp; Mailed: <strong>$18</strong></div>
           </div>
           <ul>
-            <li>Everything in the Standard Certificate</li>
-            <li>Premium border / seal treatment</li>
-            <li>Suitable for framing or display</li>
+            <li>Personalized on church letterhead with ordination date &amp; registration number</li>
+            <li>Digital: PDF by email, usually the same day</li>
+            <li>Printed: mailed ~5&ndash;7 business days</li>
           </ul>
         </label>
       </div>
@@ -341,40 +339,21 @@ footer .faq-btn{display:inline-block;background:var(--gold);color:var(--purple-d
         </div>
       </div>
 
-      <div class="builder-panel panel" id="addons-picker" style="display:none;">
-        <h3>3. Add Extras (optional)</h3>
-        <div class="addon-list">
-          <label class="addon-item">
-            <input type="checkbox" data-addon-name="[Example Name] Letter of Good Standing" data-addon-price="15">
-            <span class="addon-name">[Example Name] Letter of Good Standing <span class="placeholder-badge">example</span></span>
-            <span class="addon-price">+$15 <small>(example)</small></span>
-          </label>
-          <label class="addon-item">
-            <input type="checkbox" data-addon-name="[Example Name] Clergy Business Cards" data-addon-price="10">
-            <span class="addon-name">[Example Name] Clergy Business Cards <span class="placeholder-badge">example</span></span>
-            <span class="addon-price">+$10 <small>(example)</small></span>
-          </label>
-          <label class="addon-item">
-            <input type="checkbox" data-addon-name="[Example Name] Certificate Holder" data-addon-price="4">
-            <span class="addon-name">[Example Name] Certificate Holder <span class="placeholder-badge">example</span></span>
-            <span class="addon-price">+$4 <small>(example)</small></span>
-          </label>
-        </div>
-      </div>
-
-      <p class="addon-note" id="free-addon-note">Add-ons attach to a paid package &mdash; choose Standard or Premium above to unlock delivery method and extras.</p>
-
       <div class="order-summary panel" id="order-summary" style="margin-top:26px;">
         <h3>Your Order</h3>
         <ul class="review-list" id="summary-lines">
           <li><span>Free Ordination</span><span>$0</span></li>
         </ul>
         <div class="summary-total"><span>Subtotal</span><span id="summary-subtotal">$0</span></div>
-        <button class="btn btn-solid" disabled style="width:100%;">Stripe checkout (coming soon)</button>
+        <button class="btn btn-solid" disabled style="width:100%;">Secure card checkout &mdash; opening when payments go live</button>
+        <p class="addon-note" style="margin-top:10px;text-align:center;">Free ordination is complete &mdash; your confirmation email is on its way. Keepsake orders will be payable by card once checkout opens.</p>
       </div>
 
       <div class="disclosure">
-        <strong>Build note (remove before launch):</strong> product names, descriptions, and the $9/$15/$19/$29/$15/$10/$4 example prices throughout this section are all placeholders used only to demonstrate the running order total &mdash; none are final. Checkout is not yet wired to Stripe. See <code>README-SCAFFOLD.md</code> in the project root for what's built vs. still open.
+        <strong>Ordination and officiating:</strong> Ordination is a ministry credential of H.O.R.S.E.S. Church. Legal recognition and any requirements to officiate a marriage (such as registration with a county clerk) vary by state; please check your local requirements before officiating a legal ceremony.
+      </div>
+      <div class="disclosure" style="margin-top:10px;">
+        <strong>Refunds:</strong> Digital items are delivered by email and are non-refundable once sent. Printed items are mailed within ~5&ndash;7 business days of your order; if one arrives damaged, we replace it free.
       </div>
     </div>
   </div>
@@ -473,13 +452,10 @@ function formspreeSubmit(formEl, endpoint, subject){
     document.getElementById('packages').scrollIntoView({behavior:'smooth', block:'start'});
   });
 
-  // ---- Package -> Add-ons -> running order summary ----
+  // ---- Package + delivery -> running order summary ----
   var packageInputs = document.querySelectorAll('input[name="base-package"]');
   var deliveryInputs = document.querySelectorAll('input[name="main-delivery"]');
-  var addonInputs = document.querySelectorAll('#addons-picker input[type=checkbox]');
   var deliveryPicker = document.getElementById('delivery-picker');
-  var addonsPicker = document.getElementById('addons-picker');
-  var freeAddonNote = document.getElementById('free-addon-note');
   var summaryLines = document.getElementById('summary-lines');
   var summarySubtotal = document.getElementById('summary-subtotal');
 
@@ -497,8 +473,6 @@ function formspreeSubmit(formEl, endpoint, subject){
     if (pkgEl) pkgEl.classList.add('selected');
 
     deliveryPicker.style.display = isPaid ? 'block' : 'none';
-    addonsPicker.style.display = isPaid ? 'block' : 'none';
-    freeAddonNote.style.display = isPaid ? 'none' : 'block';
 
     var lines = [];
     var subtotal = 0;
@@ -508,29 +482,19 @@ function formspreeSubmit(formEl, endpoint, subject){
     } else {
       var delivery = document.querySelector('input[name="main-delivery"]:checked').value;
       var price = Number(pkgEl.dataset[delivery + 'Price']);
-      var priceLabel = pkgEl.dataset[delivery + 'Label'];
       var pkgName = pkgEl.querySelector('h3').textContent;
-      lines.push({ name: pkgName + ' (' + (delivery === 'digital' ? 'Digital' : 'Printed & Mailed') + ')', priceLabel: priceLabel });
+      lines.push({ name: pkgName + ' (' + (delivery === 'digital' ? 'Digital' : 'Printed & Mailed') + ')', priceLabel: '$' + price });
       subtotal += price;
-
-      addonInputs.forEach(function(box){
-        if (box.checked){
-          var addonPrice = Number(box.dataset.addonPrice);
-          lines.push({ name: box.dataset.addonName, priceLabel: '+$' + addonPrice + ' (example)' });
-          subtotal += addonPrice;
-        }
-      });
     }
 
     summaryLines.innerHTML = lines.map(function(l){
       return '<li><span>' + l.name + '</span><span>' + l.priceLabel + '</span></li>';
     }).join('');
-    summarySubtotal.textContent = '$' + subtotal + (isPaid ? ' (example)' : '');
+    summarySubtotal.textContent = '$' + subtotal;
   }
 
   packageInputs.forEach(function(r){ r.addEventListener('change', recomputeSummary); });
   deliveryInputs.forEach(function(r){ r.addEventListener('change', recomputeSummary); });
-  addonInputs.forEach(function(c){ c.addEventListener('change', recomputeSummary); });
 
   recomputeSummary();
 })();
