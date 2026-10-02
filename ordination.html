@@ -356,8 +356,8 @@ footer .faq-btn{display:inline-block;background:var(--gold);color:var(--purple-d
           <li><span>Free Ordination</span><span>$0</span></li>
         </ul>
         <div class="summary-total"><span>Subtotal</span><span id="summary-subtotal">$0</span></div>
-        <button class="btn btn-solid" disabled style="width:100%;">Secure card checkout &mdash; opening when payments go live</button>
-        <p class="addon-note" style="margin-top:10px;text-align:center;">Free ordination is complete &mdash; your confirmation email is on its way. Keepsake orders will be payable by card once checkout opens.</p>
+        <button class="btn btn-solid" id="checkout-btn" type="button" style="width:100%;">Secure card checkout</button>
+        <p class="addon-note" style="margin-top:10px;text-align:center;">Free ordination is complete &mdash; your confirmation email is on its way. Keepsake packages are paid by card on Stripe&rsquo;s secure checkout.</p>
       </div>
 
       <div class="disclosure">
@@ -508,6 +508,43 @@ function formspreeSubmit(formEl, endpoint, subject){
   deliveryInputs.forEach(function(r){ r.addEventListener('change', recomputeSummary); });
 
   recomputeSummary();
+
+  // ---- Stripe payment links: one per package + delivery choice ----
+  var STRIPE_LINKS = {
+    'cert|digital'   : 'https://buy.stripe.com/14A6oI9NI2blb5v2Fq87K00',
+    'cert|physical'  : 'https://buy.stripe.com/5kQ14obVQbLV7Tjgwg87K01',
+    'letter|digital' : 'https://buy.stripe.com/3cI28sf824jtehHbbW87K02',
+    'letter|physical': 'https://buy.stripe.com/3cIaEY6Bw8zJ1uVcg087K03'
+  };
+  var checkoutBtn = document.getElementById('checkout-btn');
+
+  function currentLinkKey(){
+    var pkgEl = selectedPackageEl();
+    if (!pkgEl || pkgEl.dataset.package === 'free') return null;
+    var dEl = document.querySelector('input[name="main-delivery"]:checked');
+    if (!dEl) return null;
+    return pkgEl.dataset.package + '|' + dEl.value;
+  }
+
+  function syncCheckoutBtn(){
+    var url = STRIPE_LINKS[currentLinkKey()];
+    if (url){
+      checkoutBtn.disabled = false;
+      checkoutBtn.textContent = 'Secure card checkout';
+    } else {
+      checkoutBtn.disabled = true;
+      checkoutBtn.textContent = 'Choose a keepsake package above to pay by card';
+    }
+  }
+
+  checkoutBtn.addEventListener('click', function(){
+    var url = STRIPE_LINKS[currentLinkKey()];
+    if (url) window.location.href = url;
+  });
+
+  packageInputs.forEach(function(r){ r.addEventListener('change', syncCheckoutBtn); });
+  deliveryInputs.forEach(function(r){ r.addEventListener('change', syncCheckoutBtn); });
+  syncCheckoutBtn();
 })();
 </script>
 </body>
