@@ -213,6 +213,21 @@ footer .faq-btn{display:inline-block;background:var(--gold);color:var(--purple-d
 .pkg ul{list-style:disc;padding-left:20px;}
 .pkg li{border-bottom:0;padding:4px 0;line-height:1.45;}
 .pkg li::marker{color:var(--gold);}
+#addons [hidden],#addons[hidden]{display:none !important;}
+#addons{margin-top:0;}
+#addons h3,#order-summary h3{text-align:center;font-size:1rem;}
+.addon-row{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px;padding:12px 0;border-bottom:1px dashed var(--parchment-dim);}
+.addon-row:last-of-type{border-bottom:0;}
+.addon-name{font-family:'Cinzel',Georgia,serif;font-size:.92rem;color:var(--purple-deep);}
+.addon-choices{display:flex;flex-wrap:wrap;align-items:center;gap:6px 16px;}
+.addon-choices label{display:inline-flex;align-items:center;gap:6px;margin:0;font-family:'EB Garamond',Georgia,serif;font-size:1rem;letter-spacing:normal;text-transform:none;color:var(--ink);cursor:pointer;}
+.addon-choices input[type=radio]{width:auto;accent-color:var(--purple-deep);}
+#bible-size{width:auto;padding:6px 10px;background:#fff;border:1.5px solid var(--gold);}
+#delivery-picker,#addons,#order-summary{max-width:640px;margin-left:auto;margin-right:auto;}
+#addons{margin-bottom:22px;}
+#keepsake-info h3{text-align:center;}
+#keepsake-info .grid3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr));max-width:640px;margin:0 auto !important;}
+.opt{font-family:'EB Garamond',serif;font-size:.85rem;color:var(--purple-mid);text-transform:none;letter-spacing:0;}
 .o-done{background:#fff;border:1px solid var(--parchment-dim);border-left:4px solid var(--gold);border-bottom:4px solid var(--gold);padding:30px;text-align:center;}
 .o-done h3{margin:0 0 .4em;}
 .o-done p{margin:0 auto;color:var(--purple-royal);max-width:none;}
@@ -384,14 +399,56 @@ footer .faq-btn{display:inline-block;background:var(--gold);color:var(--purple-d
         </div>
       </div>
 
-      <div class="order-summary panel" id="order-summary" style="margin-top:26px;">
+      <div class="builder-panel panel" id="addons">
+        <h3><span id="addons-step">3.</span> Add-ons <span class="opt">(optional)</span></h3>
+
+        <div class="addon-row" id="addon-letter-row">
+          <div class="addon-name">Letter of Good Standing</div>
+          <div class="addon-choices">
+            <label><input type="radio" name="addon-letter" value="" checked> None</label>
+            <label><input type="radio" name="addon-letter" value="letter-digital"> Digital &mdash; $15</label>
+            <label><input type="radio" name="addon-letter" value="letter-printed"> Printed &amp; mailed &mdash; $18</label>
+          </div>
+        </div>
+
+        <div class="addon-row" id="addon-cert-row" hidden>
+          <div class="addon-name">Ordination Certificate</div>
+          <div class="addon-choices">
+            <label><input type="radio" name="addon-cert" value="" checked> None</label>
+            <label><input type="radio" name="addon-cert" value="cert-digital"> Digital &mdash; $15</label>
+            <label><input type="radio" name="addon-cert" value="cert-printed"> Printed &amp; mailed &mdash; $25</label>
+          </div>
+        </div>
+
+        <div class="addon-row">
+          <div class="addon-name">Ordination Bible Cover &mdash; $49</div>
+          <div class="addon-choices">
+            <label><input type="radio" name="addon-bible" value="" checked> No</label>
+            <label><input type="radio" name="addon-bible" value="yes"> Yes</label>
+            <select id="bible-size" aria-label="Bible cover size" hidden>
+              <option value="">Choose size&hellip;</option>
+              <option>M</option><option>L</option><option>XL</option><option>2XL</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="addon-row">
+          <div class="addon-name">Ordination Stole &mdash; $39</div>
+          <div class="addon-choices">
+            <label><input type="radio" name="addon-stole" value="" checked> No</label>
+            <label><input type="radio" name="addon-stole" value="yes"> Yes</label>
+          </div>
+        </div>
+
+        <p class="addon-note" style="margin:10px 0 0;"><a href="#keepsake-info">More about the Bible cover and stole &darr;</a></p>
+      </div>
+
+      <div class="order-summary panel" id="order-summary">
         <h3>Your Order</h3>
-        <ul class="review-list" id="summary-lines">
-          <li><span>Free Ordination</span><span>$0</span></li>
-        </ul>
-        <div class="summary-total"><span>Subtotal</span><span id="summary-subtotal">$0</span></div>
+        <ul class="review-list" id="summary-lines"></ul>
+        <div class="summary-total"><span>Total</span><span id="summary-subtotal">$0</span></div>
         <button class="btn btn-solid" id="checkout-btn" type="button" style="width:100%;">Secure card checkout</button>
-        <p class="addon-note" style="margin-top:10px;text-align:center;">Keepsake packages are paid by card on Stripe&rsquo;s secure checkout.</p>
+        <p class="addon-note" id="checkout-msg" style="margin-top:10px;text-align:center;">Payment is handled on Stripe&rsquo;s secure checkout.</p>
       </div>
 
       <div class="o-done" id="free-done" style="display:none;margin-top:26px;" role="status" tabindex="-1">
@@ -399,11 +456,10 @@ footer .faq-btn{display:inline-block;background:var(--gold);color:var(--purple-d
         <p>Welcome to the ministry of H.O.R.S.E.S. Church. Your confirmation email is on its way.</p>
       </div>
 
-      <div class="panel" id="keepsakes" style="margin-top:26px;">
-        <h3>Add a Keepsake <span style="font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--purple-royal);">Optional</span></h3>
-        <p style="color:var(--purple-royal);margin-bottom:16px;">Made-to-order keepsakes carrying the church crest, delivered straight to your door. Order them on their own &mdash; no ordination required.</p>
+      <div class="panel" id="keepsake-info" style="margin-top:26px;">
+        <h3>About Our Keepsakes</h3>
         <div class="grid3" style="margin:0;">
-          <div class="pkg pkg-option" style="cursor:default;">
+          <div class="pkg">
             <h3>Ordination Bible Cover</h3>
             <div class="price">$49</div>
             <ul>
@@ -411,9 +467,8 @@ footer .faq-btn{display:inline-block;background:var(--gold);color:var(--purple-d
               <li>Sizes M through 2XL</li>
               <li>Made to order &mdash; please allow about 2 weeks</li>
             </ul>
-            <a class="btn btn-solid" href="https://buy.stripe.com/9B65kE2lg8zJb5vgwg87K06" style="width:100%;margin-top:10px;">Add a Bible cover &mdash; $49</a>
           </div>
-          <div class="pkg pkg-option" style="cursor:default;">
+          <div class="pkg">
             <h3>Ordination Stole</h3>
             <div class="price">$39</div>
             <ul>
@@ -421,11 +476,11 @@ footer .faq-btn{display:inline-block;background:var(--gold);color:var(--purple-d
               <li>One size, 72&quot; &times; 6&quot;</li>
               <li>Made to order &mdash; please allow about 2 weeks</li>
             </ul>
-            <a class="btn btn-solid" href="https://buy.stripe.com/9B63cw1hc5nxddD7ZK87K05" style="width:100%;margin-top:10px;">Add a stole &mdash; $39</a>
           </div>
         </div>
         <p class="addon-note" style="margin-top:12px;text-align:center;">Both keepsakes are made to order, so please allow about 2 weeks for delivery. Because they are made to order they cannot be returned &mdash; but if one arrives faulty or damaged, we replace it free (after receiving proof of the damaged item).</p>
       </div>
+
       <div class="disclosure">
         <strong>Ordination and officiating:</strong> Ordination is a ministry credential of H.O.R.S.E.S. Church. Legal recognition and any requirements to officiate a marriage (such as registration with a county clerk) vary by state; please check your local requirements before officiating a legal ceremony.
       </div>
@@ -535,110 +590,114 @@ function formspreeSubmit(formEl, endpoint, subject){
     document.getElementById('packages').scrollIntoView({behavior:'smooth', block:'start'});
   });
 
-  // ---- Package + delivery -> running order summary ----
-  var packageInputs = document.querySelectorAll('input[name="base-package"]');
-  var deliveryInputs = document.querySelectorAll('input[name="main-delivery"]');
+  // ---- Package builder: package + delivery + add-ons -> one Stripe cart ----
+  // Cloudflare Worker that creates the Stripe Checkout session (prices are set there)
+  var CHECKOUT_ENDPOINT = 'https://horses-checkout.eve-868.workers.dev/';
+  var PRICES = { 'cert-digital':15, 'cert-printed':25, 'letter-digital':15, 'letter-printed':18, 'bible-cover':49, 'stole':39 };
+  var LABELS = {
+    'cert-digital':'Ordination Certificate (Digital)', 'cert-printed':'Ordination Certificate (Printed & Mailed)',
+    'letter-digital':'Letter of Good Standing (Digital)', 'letter-printed':'Letter of Good Standing (Printed & Mailed)',
+    'bible-cover':'Ordination Bible Cover', 'stole':'Ordination Stole'
+  };
   var deliveryPicker = document.getElementById('delivery-picker');
   var summaryLines = document.getElementById('summary-lines');
   var summarySubtotal = document.getElementById('summary-subtotal');
-
-  function selectedPackageEl(){
-    var checked = document.querySelector('input[name="base-package"]:checked');
-    return checked ? checked.closest('.pkg-option') : null;
-  }
-
-  function recomputeSummary(){
-    var pkgEl = selectedPackageEl();
-    var isPaid = pkgEl && pkgEl.dataset.package !== 'free';
-
-    // highlight the chosen package card
-    document.querySelectorAll('.pkg-option').forEach(function(el){ el.classList.remove('selected'); });
-    if (pkgEl) pkgEl.classList.add('selected');
-
-    deliveryPicker.style.display = isPaid ? 'block' : 'none';
-
-    var lines = [];
-    var subtotal = 0;
-
-    if (!isPaid){
-      lines.push({ name: 'Free Ordination', priceLabel: '$0' });
-    } else {
-      var delivery = document.querySelector('input[name="main-delivery"]:checked').value;
-      var price = Number(pkgEl.dataset[delivery + 'Price']);
-      var pkgName = pkgEl.querySelector('h3').textContent;
-      lines.push({ name: pkgName + ' (' + (delivery === 'digital' ? 'Digital' : 'Printed & Mailed') + ')', priceLabel: '$' + price });
-      subtotal += price;
-    }
-
-    summaryLines.innerHTML = lines.map(function(l){
-      return '<li><span>' + l.name + '</span><span>' + l.priceLabel + '</span></li>';
-    }).join('');
-    summarySubtotal.textContent = '$' + subtotal;
-  }
-
-  packageInputs.forEach(function(r){ r.addEventListener('change', recomputeSummary); });
-  deliveryInputs.forEach(function(r){ r.addEventListener('change', recomputeSummary); });
-
-  recomputeSummary();
-
-  // ---- Stripe payment links: one per package + delivery choice ----
-  var STRIPE_LINKS = {
-    'cert|digital'   : 'https://buy.stripe.com/14A6oI9NI2blb5v2Fq87K00',
-    'cert|physical'  : 'https://buy.stripe.com/5kQ14obVQbLV7Tjgwg87K01',
-    'letter|digital' : 'https://buy.stripe.com/7sY4gAbVQ17h7Tj7ZK87K07',
-    'letter|physical': 'https://buy.stripe.com/3cIaEY6Bw8zJ1uVcg087K03'
-  };
   var checkoutBtn = document.getElementById('checkout-btn');
+  var checkoutMsg = document.getElementById('checkout-msg');
+  var bibleSize = document.getElementById('bible-size');
 
-  function currentLinkKey(){
-    var pkgEl = selectedPackageEl();
-    if (!pkgEl || pkgEl.dataset.package === 'free') return null;
-    var dEl = document.querySelector('input[name="main-delivery"]:checked');
-    if (!dEl) return null;
-    return pkgEl.dataset.package + '|' + dEl.value;
+  function val(name){ var e = document.querySelector('input[name="' + name + '"]:checked'); return e ? e.value : ''; }
+  function selectedPackageEl(){ var c = document.querySelector('input[name="base-package"]:checked'); return c ? c.closest('.pkg-option') : null; }
+  function basePackage(){ var el = selectedPackageEl(); return el ? el.dataset.package : 'free'; }
+
+  function buildItems(){
+    var base = basePackage();
+    var fmt = val('main-delivery') === 'physical' ? 'printed' : 'digital';
+    var items = [];
+    if (base !== 'free') items.push(base + '-' + fmt);
+    if (base !== 'letter' && val('addon-letter')) items.push(val('addon-letter'));
+    if (base === 'letter' && val('addon-cert')) items.push(val('addon-cert'));
+    if (val('addon-bible') === 'yes') items.push('bible-cover');
+    if (val('addon-stole') === 'yes') items.push('stole');
+    return items;
   }
 
-  function syncCheckoutBtn(){
-    var url = STRIPE_LINKS[currentLinkKey()];
-    if (url){
-      checkoutBtn.disabled = false;
-      checkoutBtn.textContent = 'Secure card checkout';
-    } else if (isFreeSelected()){
-      checkoutBtn.disabled = false;
-      checkoutBtn.textContent = 'Complete my free ordination';
-    } else {
-      checkoutBtn.disabled = true;
-      checkoutBtn.textContent = 'Choose a package above';
-    }
+  function refresh(){
+    var base = basePackage();
+    document.querySelectorAll('.pkg-option').forEach(function(el){ el.classList.toggle('selected', el === selectedPackageEl()); });
+    deliveryPicker.style.display = base === 'free' ? 'none' : 'block';
+    document.getElementById('addons-step').textContent = base === 'free' ? '2.' : '3.';
+    document.getElementById('addon-letter-row').hidden = base === 'letter';
+    document.getElementById('addon-cert-row').hidden = base !== 'letter';
+    bibleSize.hidden = val('addon-bible') !== 'yes';
+
+    var items = buildItems();
+    var total = items.reduce(function(t, k){ return t + PRICES[k]; }, 0);
+    var lines = (base === 'free' ? ['<li><span>Free Ordination</span><span>$0</span></li>'] : []).concat(
+      items.map(function(k){
+        var label = LABELS[k] + (k === 'bible-cover' && bibleSize.value ? ' \u2014 Size ' + bibleSize.value : '');
+        return '<li><span>' + label + '</span><span>$' + PRICES[k] + '</span></li>';
+      }));
+    summaryLines.innerHTML = lines.join('');
+    summarySubtotal.textContent = '$' + total;
+    checkoutBtn.disabled = false;
+    checkoutBtn.textContent = items.length ? 'Secure card checkout \u2014 $' + total : 'Complete my free ordination';
+    checkoutMsg.textContent = items.length ? 'Payment is handled on Stripe\u2019s secure checkout.' : 'No payment needed.';
   }
 
-  function isFreeSelected(){
-    var pkgEl = selectedPackageEl();
-    return !!pkgEl && pkgEl.dataset.package === 'free';
+  document.querySelectorAll('input[name="base-package"], input[name="main-delivery"], input[name^="addon-"]').forEach(function(r){
+    r.addEventListener('change', refresh);
+  });
+  bibleSize.addEventListener('change', refresh);
+  refresh();
+
+  function notifyFreeCompletion(){
+    var data = new FormData();
+    data.append('Full name', document.getElementById('o-name').value);
+    data.append('Email', document.getElementById('o-email').value);
+    data.append('Package', 'Free Ordination');
+    data.append('_subject', 'Ordination Completed (Free)');
+    fetch('https://formspree.io/f/meaqrwej', { method:'POST', body:data, headers:{ 'Accept':'application/json' } })
+      .catch(function(err){ console.error('Free ordination completion failed:', err); });
   }
 
   checkoutBtn.addEventListener('click', function(){
-    var url = STRIPE_LINKS[currentLinkKey()];
-    if (url){ window.location.href = url; return; }
-    if (isFreeSelected()){
-      // Let the church office know this person finished with the free option
-      var data = new FormData();
-      data.append('Full name', document.getElementById('o-name').value);
-      data.append('Email', document.getElementById('o-email').value);
-      data.append('Package', 'Free Ordination');
-      data.append('_subject', 'Ordination Completed (Free)');
-      fetch('https://formspree.io/f/meaqrwej', { method:'POST', body:data, headers:{ 'Accept':'application/json' } })
-        .catch(function(err){ console.error('Free ordination completion failed:', err); });
+    var items = buildItems();
+    if (!items.length){
+      notifyFreeCompletion();
       document.getElementById('order-summary').style.display = 'none';
+      document.getElementById('addons').style.display = 'none';
       var done = document.getElementById('free-done');
       done.style.display = 'block';
       done.scrollIntoView({behavior:'smooth', block:'center'});
+      return;
     }
+    if (items.indexOf('bible-cover') > -1 && !bibleSize.value){
+      checkoutMsg.textContent = 'Please choose a Bible cover size.';
+      bibleSize.focus();
+      return;
+    }
+    if (basePackage() === 'free') notifyFreeCompletion();
+    checkoutBtn.disabled = true;
+    checkoutBtn.textContent = 'Opening secure checkout\u2026';
+    fetch(CHECKOUT_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        items: items,
+        bibleSize: bibleSize.value,
+        name: document.getElementById('o-name').value,
+        email: document.getElementById('o-email').value
+      })
+    }).then(function(r){ return r.json(); }).then(function(d){
+      if (d && d.url){ window.location.href = d.url; return; }
+      throw new Error((d && d.error) || 'Checkout unavailable');
+    }).catch(function(err){
+      console.error('Checkout failed:', err);
+      refresh();
+      checkoutMsg.textContent = 'Sorry \u2014 checkout could not open. Please try again or email info@horseschurch.org.';
+    });
   });
-
-  packageInputs.forEach(function(r){ r.addEventListener('change', syncCheckoutBtn); });
-  deliveryInputs.forEach(function(r){ r.addEventListener('change', syncCheckoutBtn); });
-  syncCheckoutBtn();
 })();
 </script>
 </body>
