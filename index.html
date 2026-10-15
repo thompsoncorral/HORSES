@@ -137,6 +137,23 @@ footer a:hover{color:var(--gold-light);}
 footer .brand-text{color:var(--gold-light);}
 footer .foot-bottom{border-top:1px solid #4a3568;padding-top:18px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:.78rem;color:#9c88b8;}
 footer .faq-btn{display:inline-block;background:var(--gold);color:var(--purple-deep);font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;padding:9px 18px;margin-top:4px;}
+
+/* ---- hero: headline left, crest right, pale purple band ---- */
+.hero { overflow-x: clip; }
+.hero .wrap { display: grid; grid-template-columns: 1fr auto; grid-template-rows: 1fr auto auto auto 1fr; column-gap: 48px; }
+.hero .wrap::before { content: ""; grid-column: 1 / -1; grid-row: 1 / -1; margin: 0 calc(50% - 50vw); background: #DCCBEE; }
+.hero h1 { grid-column: 1; grid-row: 2; text-align: left; margin: 0 0 .4em; max-width: none; }
+.hero .lede { grid-column: 1; grid-row: 3; text-align: left; margin: 0 0 1.4em; max-width: none; }
+.hero .btns { grid-column: 1; grid-row: 4; justify-content: flex-start; }
+.hero-crest { grid-column: 2; grid-row: 1 / -1; align-self: center; width: 420px; max-width: 100%; height: auto; margin: 28px 0; }
+@media (max-width: 760px) {
+  .hero .wrap { grid-template-columns: 1fr; grid-template-rows: auto; }
+  .hero h1, .hero .lede { text-align: center; }
+  .hero h1 { grid-row: 1; padding-top: 28px; }
+  .hero .lede { grid-row: 2; }
+  .hero .btns { grid-row: 3; justify-content: center; }
+  .hero-crest { grid-column: 1; grid-row: 4; justify-self: center; margin: 24px auto 28px; }
+}
 </style>
 </head>
 <body>
