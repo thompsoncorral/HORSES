@@ -160,6 +160,9 @@ footer .faq-btn{display:inline-block;background:var(--gold);color:var(--purple-d
 .mem-list li::before{content:"\2713";position:absolute;left:4px;top:6px;color:#b8973a;font-weight:700;}
 /* Membership form: gold-outlined fields */
 #member-form{max-width:none;}
+#member-form .opt{text-transform:none;letter-spacing:0;font-family:'EB Garamond',serif;font-size:.85rem;color:var(--purple-mid);}
+#member-form label.check{display:flex;align-items:center;gap:10px;font-family:'EB Garamond',serif;font-size:1.02rem;letter-spacing:0;text-transform:none;color:var(--ink);cursor:pointer;}
+#member-form label.check input{width:20px;height:20px;padding:0;flex:none;accent-color:var(--gold);}
 .mem-done{background:#fff;border:1px solid var(--parchment-dim);border-left:4px solid var(--gold);padding:30px;text-align:center;outline:none;}
 .mem-done h3{margin:0 0 .4em;}
 .mem-done p{margin:0 auto;color:var(--purple-royal);}
@@ -233,6 +236,58 @@ footer .faq-btn{display:inline-block;background:var(--gold);color:var(--purple-d
         <input type="email" id="m-email" name="Email" required>
       </div>
       <div class="field">
+        <label for="m-city">City and state <span class="opt">(optional)</span></label>
+        <input type="text" id="m-city" name="City and state">
+      </div>
+      <div class="field">
+        <label for="m-type">Membership type</label>
+        <select id="m-type" name="Membership type" required>
+          <option value="" disabled selected>Choose one&hellip;</option>
+          <option>Active</option>
+          <option>Lifetime</option>
+          <option>Honorary</option>
+          <option>Supporting</option>
+        </select>
+      </div>
+      <div class="mtype-extra" data-for="Active" hidden>
+        <div class="field">
+          <label for="m-role">Your desired role</label>
+          <select id="m-role" name="Desired role" required disabled>
+            <option value="" disabled selected>Choose one&hellip;</option>
+            <option>Ordained minister</option>
+            <option>Clergy</option>
+            <option>Staff</option>
+            <option>Educator</option>
+            <option>Organizer</option>
+            <option>Volunteer</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="m-ordained">Are you ordained through H.O.R.S.E.S. Church?</label>
+          <select id="m-ordained" name="Ordained through HORSES" required disabled>
+            <option value="" disabled selected>Choose one&hellip;</option>
+            <option>Yes</option>
+            <option>No</option>
+          </select>
+        </div>
+      </div>
+      <div class="mtype-extra" data-for="Lifetime" hidden>
+        <div class="field">
+          <label class="check"><input type="checkbox" id="m-covenant" name="Has covenant recorded" value="Yes" disabled> I have a covenant recorded in the church Registrum</label>
+        </div>
+      </div>
+      <div class="mtype-extra" data-for="Honorary" hidden>
+        <div class="field">
+          <label for="m-support">Type of support</label>
+          <select id="m-support" name="Type of support" required disabled>
+            <option value="" disabled selected>Choose one&hellip;</option>
+            <option>Donation made</option>
+            <option>Planned gift or bequest</option>
+            <option>Other gift</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
         <label for="m-horses">Do you currently keep or manage horses?</label>
         <select id="m-horses" name="Keeps horses">
           <option>Yes</option>
@@ -288,6 +343,19 @@ footer .faq-btn{display:inline-block;background:var(--gold);color:var(--purple-d
 // so the visitor sees an on-page confirmation instead of leaving the site.
 var MEMBERSHIP_ENDPOINT = 'https://formspree.io/f/xyeylpnb';
 
+// Show only the follow-up questions for the chosen membership type
+(function(){
+  var typeSel = document.getElementById('m-type');
+  function sync(){
+    document.querySelectorAll('#member-form .mtype-extra').forEach(function(box){
+      var on = box.getAttribute('data-for') === typeSel.value;
+      box.hidden = !on;
+      box.querySelectorAll('input,select,textarea').forEach(function(el){ el.disabled = !on; });
+    });
+  }
+  typeSel.addEventListener('change', sync);
+  sync();
+})();
 document.getElementById('member-form').addEventListener('submit', function(e){
   e.preventDefault();
   var form = this;
