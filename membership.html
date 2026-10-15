@@ -160,6 +160,9 @@ footer .faq-btn{display:inline-block;background:var(--gold);color:var(--purple-d
 .mem-list li::before{content:"\2713";position:absolute;left:4px;top:6px;color:#b8973a;font-weight:700;}
 /* Membership form: gold-outlined fields */
 #member-form{max-width:none;}
+.mem-done{background:#fff;border:1px solid var(--parchment-dim);border-left:4px solid var(--gold);padding:30px;text-align:center;outline:none;}
+.mem-done h3{margin:0 0 .4em;}
+.mem-done p{margin:0 auto;color:var(--purple-royal);}
 #member-form input,#member-form select,#member-form textarea{background:#fff;border:1.5px solid var(--gold);color:var(--ink);}
 #member-form input:focus,#member-form select:focus,#member-form textarea:focus{outline:none;border-color:var(--purple-royal);box-shadow:0 0 0 3px rgba(201,162,39,.25);}
 </style>
@@ -242,9 +245,12 @@ footer .faq-btn{display:inline-block;background:var(--gold);color:var(--purple-d
         <textarea id="m-note" name="Note"></textarea>
       </div>
       <button type="submit" class="btn btn-solid">Submit Membership Request</button>
-      <p class="formnote" id="m-note">Your request is sent securely to the church office &mdash; no email client needed. You'll see a confirmation below.</p>
-      <p class="formnote" id="m-done" style="display:none;color:var(--purple-deep);">&#10022; Thank you! Your membership request has been received &mdash; the church office will be in touch at the email you provided.</p>
+      <p class="formnote" id="m-sendnote">Your request is sent securely to the church office &mdash; no email client needed. You'll see a confirmation below.</p>
     </form>
+    <div id="m-done" class="mem-done" style="display:none;" role="status" tabindex="-1">
+      <h3>Thank you!</h3>
+      <p>Your membership request has been received. The church office will be in touch at the email you provided.</p>
+    </div>
   </div>
 </section>
 
@@ -293,10 +299,14 @@ document.getElementById('member-form').addEventListener('submit', function(e){
     body: data,
     headers: { 'Accept': 'application/json' }
   }).then(function(resp){
+    if(!resp.ok){ throw new Error('Formspree returned ' + resp.status); }
     form.style.display = 'none';
-    document.getElementById('m-done').style.display = 'block';
+    var done = document.getElementById('m-done');
+    done.style.display = 'block';
+    done.scrollIntoView({behavior:'smooth', block:'center'});
+    done.focus({preventScroll:true});
   }).catch(function(err){
-    var note = document.getElementById('m-note');
+    var note = document.getElementById('m-sendnote');
     if(note){ note.textContent = 'Something went wrong sending your request. Please email us at info@horseschurch.org.'; }
     console.error('Membership form submission failed:', err);
   });
