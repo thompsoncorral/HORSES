@@ -137,6 +137,36 @@ footer a:hover{color:var(--gold-light);}
 footer .brand-text{color:var(--gold-light);}
 footer .foot-bottom{border-top:1px solid #4a3568;padding-top:18px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:.78rem;color:#9c88b8;}
 footer .faq-btn{display:inline-block;background:var(--gold);color:var(--purple-deep);font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;padding:9px 18px;margin-top:4px;}
+/* Theology: collapsible sections */
+.acc-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;cursor:pointer;user-select:none;}
+.acc-head:focus-visible{outline:2px solid var(--gold);outline-offset:6px;}
+.acc-head h2{margin-bottom:0;}
+.acc-btn{flex:none;margin-top:18px;width:34px;height:34px;border-radius:50%;border:1.5px solid var(--gold);background:#fff;color:var(--purple-deep);font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:transform .25s;}
+.acc.open .acc-btn{transform:rotate(180deg);background:var(--gold);color:#fff;}
+.acc-hint{font-size:.9rem;color:var(--purple-mid);font-style:italic;margin:.3em 0 0;}
+.acc.open .acc-hint{display:none;}
+.acc-body{display:none;margin-top:20px;}
+.acc.open .acc-body{display:block;}
+.acc-body p{max-width:none;}
+.th-lead{font-size:1.12rem;color:var(--purple-royal);margin-bottom:16px;}
+.th-list{list-style:none;padding:0;margin:0 0 18px;}
+.th-list li{position:relative;padding:7px 0 7px 26px;border-bottom:1px solid var(--parchment-dim);}
+.th-list li:last-child{border-bottom:0;}
+.th-list li::before{content:"\2726";position:absolute;left:2px;top:7px;color:var(--gold);}
+.th-quote{border-left:3px solid var(--gold);background:rgba(232,205,109,.15);padding:14px 18px;margin:0 0 18px;font-style:italic;color:var(--purple-deep);}
+.th-chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 6px;}
+.th-chips span{background:var(--purple-deep);color:var(--gold-light);font-family:'Cinzel',serif;font-size:.78rem;letter-spacing:.06em;padding:7px 14px;border-radius:20px;}
+.th-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:0 0 18px;}
+.th-card{background:#fff;border:1px solid var(--parchment-dim);border-top:3px solid var(--gold-light);padding:16px 18px;border-radius:3px;}
+.th-card h3{font-size:1rem;margin:0 0 6px;}
+.th-card p{margin:0;font-size:.98rem;line-height:1.55;}
+.th-card ul{margin:0;padding-left:18px;font-size:.98rem;line-height:1.55;}
+.th-steps{counter-reset:s;list-style:none;padding:0;margin:0 0 18px;}
+.th-steps li{counter-increment:s;position:relative;padding:8px 0 8px 44px;min-height:34px;}
+.th-steps li::before{content:counter(s);position:absolute;left:0;top:6px;width:30px;height:30px;border-radius:50%;background:var(--purple-deep);color:var(--gold-light);font-family:'Cinzel',serif;display:flex;align-items:center;justify-content:center;font-size:.9rem;}
+.th-callout{background:var(--purple-deep);color:var(--parchment);padding:16px 20px;border-radius:4px;margin:0 0 18px;font-size:1.05rem;}
+.th-callout strong{color:var(--gold-light);font-family:'Cinzel',serif;font-weight:600;letter-spacing:.03em;}
+.th-h{font-family:'Cinzel',serif;color:var(--purple-deep);font-size:1.05rem;letter-spacing:.04em;margin:6px 0 10px;}
 </style>
 </head>
 <body>
@@ -168,41 +198,106 @@ footer .faq-btn{display:inline-block;background:var(--gold);color:var(--purple-d
 
 <section>
   <div class="wrap">
-    <div class="panel" style="margin-bottom:26px;">
-      <span class="eyebrow"> Mystical Union</span>
-      <h2>All things are extensions of the one godliness</h2>
-      <p>H.O.R.S.E.S. Church teaches that all living things are extensions of a single, unifying godliness &mdash; not separate from the divine, but woven from it. Every creature is understood as a strand of one continuous sacred fabric, and every act of care for a living being is, in a small way, an act of communion with that whole. H.O.R.S.E.S. Church is established by divine omni-ecclesiastical authority to preach, teach and minister the truth that all people and all things are in mystical union with the One.
-
-“All are the One — ‘SomeOne’ (you) is experiential unique, yet you are fully the One at the same time, simultaneously, while living your individualised life experiences.”
-
-
-
-You are divine, you are love incarnate, you are perfect and you are loved. You are so rooted and grounded and infused and entangled with love, within love, and in love with the One itself that Love itself cannot define where you begin and where the One ends or where the one begins and where you end becuse of the mystical union paradox .</p>
+    <div class="panel acc" style="margin-bottom:26px;">
+      <div class="acc-head" role="button" tabindex="0" aria-expanded="false" aria-controls="acc-body-1">
+        <div>
+          <span class="eyebrow">Mystical Union</span>
+          <h2>All things are extensions of the one godliness</h2>
+          <p class="acc-hint">Read more about mystical union &#9662;</p>
+        </div>
+        <span class="acc-btn" aria-hidden="true">&#9662;</span>
+      </div>
+      <div class="acc-body" id="acc-body-1">
+        <p class="th-lead">All living things are woven from one unifying godliness &mdash; not separate from the divine, but part of it.</p>
+        <ul class="th-list"><li>Every creature is a strand of one continuous sacred fabric.</li><li>Every act of care for a living being is an act of communion with the whole.</li><li>H.O.R.S.E.S. Church is established by divine omni-ecclesiastical authority to preach, teach and minister this truth: all people and all things are in mystical union with the One.</li></ul>
+        <blockquote class="th-quote">&ldquo;All are the One &mdash; &lsquo;SomeOne&rsquo; (you) is experientially unique, yet you are fully the One at the same time, simultaneously, while living your individualised life experiences.&rdquo;</blockquote>
+        <p class="th-h">You are&hellip;</p>
+        <div class="th-chips"><span>Divine</span><span>Love incarnate</span><span>Perfect</span><span>Loved</span></div>
+        <p style="margin-top:14px">You are so rooted, grounded, infused and entangled with love that Love itself cannot define where you end and the One begins &mdash; the mystical union paradox.</p>
+      </div>
     </div>
 
-    <div class="panel panel-lav" style="margin-bottom:26px;">
-      <span class="eyebrow"> The Divine Spark in the Horse</span>
-      <h2>Horses are divine through mystical union</h2>
-      <p>Horses carry the divine spark with particular clarity and purity. They play an active role in eschatology and the destiny of humanity — present at Christ’s entrance into Jerusalem, present at the fullness of time, present at the new heavens, and lifting humanity up and inspiring humanity through every age of struggle and survival. Their strength held in gentleness, their trust freely given, and their long companionship with humankind are sacred. This is why to minister to a horse is to minister to the divine itself — and in truth, the horse ministers to us. Their higher frequency uplifts the human spirit, and directly elevates the lives and the health of the wounded and the disabled who ride them. Horses play a divine role in all things.</p>
+    <div class="panel acc panel-lav" style="margin-bottom:26px;">
+      <div class="acc-head" role="button" tabindex="0" aria-expanded="false" aria-controls="acc-body-2">
+        <div>
+          <span class="eyebrow">The Divine Spark in the Horse</span>
+          <h2>Horses are divine through mystical union</h2>
+          <p class="acc-hint">Read more about the divine spark &#9662;</p>
+        </div>
+        <span class="acc-btn" aria-hidden="true">&#9662;</span>
+      </div>
+      <div class="acc-body" id="acc-body-2">
+        <p class="th-lead">Horses carry the divine spark with particular clarity and purity.</p>
+        <p class="th-h">Present through all of sacred history</p>
+        <ul class="th-list"><li>At Christ&rsquo;s entrance into Jerusalem</li><li>At the fullness of time</li><li>At the new heavens</li><li>Lifting and inspiring humanity through every age of struggle and survival</li></ul>
+        <div class="th-grid">
+          <div class="th-card"><h3>What makes them sacred</h3><p>Strength held in gentleness, trust freely given, and a long companionship with humankind.</p></div>
+          <div class="th-card"><h3>Why we minister</h3><p>To minister to a horse is to minister to the divine itself &mdash; and in truth, the horse ministers to us.</p></div>
+          <div class="th-card"><h3>How they heal</h3><p>Their higher frequency uplifts the human spirit and elevates the lives and health of the wounded and disabled who ride them.</p></div>
+        </div>
+      </div>
     </div>
 
-    <div class="panel" style="margin-bottom:26px;">
-      <span class="eyebrow"> Divine History of Equines</span>
-      <h2>Equines in eschatology and human history</h2>
-      <p>Equines have held a distinctive place in both religious thought and human civilization, appearing throughout biblical literature as well as the historical record of numerous ancient cultures. Within biblical eschatology, horses are particularly prominent in prophetic and apocalyptic imagery. The Book of Zechariah describes horsemen and chariots drawn by horses of different colors, while the Book of Revelation presents the Four Horsemen and later describes a rider upon a white horse. Horses also appear in passages concerning kingship, warfare, strength, and divine judgment. These references do not establish horses as divine beings or objects of worship; rather, they demonstrate how familiar and symbolically powerful equines were within the cultures in which the biblical texts developed. Their strength, speed, mobility, and association with warfare and royalty provided imagery capable of communicating concepts of authority, judgment, conflict, and the movement of divine purpose through human history.</p><p>The historical significance of equines extends far beyond their appearance in religious texts. Horses, donkeys, and other equids became deeply integrated into human societies over thousands of years, contributing to agriculture, transportation, trade, warfare, communication, and migration. Archaeological evidence from the ancient Near East, North Africa, and Eurasia demonstrates that equines occupied a variety of roles within human communities. Horses in particular became closely associated with military power and political authority, while donkeys and other working equids were essential to transportation and everyday economic life. In some cultures, equines also appear in burial practices, artistic traditions, and ceremonial contexts, demonstrating that their importance was not limited to practical labor. Their ability to carry people and goods across distances transformed human mobility and contributed to the development and expansion of civilizations.</p><p>The recurring presence of equines in both human history and religious symbolism provides an opportunity to examine the relationship between humanity and the natural world. From a theological perspective, the significance of these animals does not depend upon regarding them as supernatural or divine. Instead, their history illustrates the profound interdependence that has existed between humans and other living creatures. Equines have served humanity, accompanied humanity, and in many societies become symbols of strength, freedom, nobility, endurance, and service. Biblical teachings concerning stewardship and humanity's responsibility toward creation provide a framework through which this relationship can be considered without elevating animals to objects of worship. The study of equines in eschatology and history therefore brings together archaeology, history, biblical literature, and theology while inviting continued consideration of humanity's responsibility toward the living creatures with whom we share the world.</p>
+    <div class="panel acc" style="margin-bottom:26px;">
+      <div class="acc-head" role="button" tabindex="0" aria-expanded="false" aria-controls="acc-body-3">
+        <div>
+          <span class="eyebrow">Divine History of Equines</span>
+          <h2>Equines in eschatology and human history</h2>
+          <p class="acc-hint">Read more about equines in history &#9662;</p>
+        </div>
+        <span class="acc-btn" aria-hidden="true">&#9662;</span>
+      </div>
+      <div class="acc-body" id="acc-body-3">
+        <p class="th-lead">Equines appear throughout scripture and the record of ancient civilizations.</p>
+        <div class="th-grid">
+          <div class="th-card"><h3>In Scripture</h3><ul><li>Zechariah&rsquo;s horsemen and colored chariots</li><li>The Four Horsemen of Revelation</li><li>The rider upon the white horse</li><li>Imagery of kingship, strength and judgment</li></ul></div>
+          <div class="th-card"><h3>In Human History</h3><ul><li>Agriculture, trade and transportation</li><li>Warfare and political authority</li><li>Burials, art and ceremony</li><li>The spread of civilizations</li></ul></div>
+          <div class="th-card"><h3>What It Shows Us</h3><p>The deep interdependence between humans and other creatures &mdash; and our calling to stewardship of creation.</p></div>
+        </div>
+        <p>Across thousands of years, horses, donkeys and other equids have served and accompanied humanity, becoming symbols of strength, freedom, nobility, endurance and service.</p>
+      </div>
     </div>
 
-    <div class="panel panel-lav" style="margin-bottom:26px;" id="covenant">
-      <span class="eyebrow"> The Sacred Covenant</span>
-      <h2>A spiritual commitment for the horse's lifetime</h2>
-      <p>Covenant: It’s a promise that runs with the horse.</p><p>The Covenant is the divine calling of this church and its members: to save horses through covenant creation that protects the horse for its entire life. Your covenant is recorded and permanently stored in the jurisdiction of the Horses Church ecclesiastical Registrum. Horses Church is called by the One to teach, re-teach humanity again what covenant theology truly is all about. A Covenant is a solemn promise — a vow to protect and perform — that attaches to the horse itself and binds every owner or caretaker who comes after to the original owner’s covenant promises, for the whole of the horse’s life.</p><p>A Covenant does not bind the church, and it does not bind the church member who makes it — it binds everyone who comes after. No one is required to acquire a horse protected by covenant; that choice is free. A church member might create a covenant that a horse may never leave the USA or be sold for human consumption. But once a horse bearing a covenant changes hands, its promises travel with the horse forever, and the new owner is bound to honor them — regardless of their faith, their beliefs, or their membership in this church or any church. The Covenant is a lawful instrument — a document the state itself is built to recognize — recorded and archived permanently in the Horses Church ecclesiastical Registrum, under the full authority of this ministry.</p>
-      
+    <div class="panel acc panel-lav" style="margin-bottom:26px;" id="covenant">
+      <div class="acc-head" role="button" tabindex="0" aria-expanded="false" aria-controls="acc-body-4">
+        <div>
+          <span class="eyebrow">The Sacred Covenant</span>
+          <h2>A spiritual commitment for the horse's lifetime</h2>
+          <p class="acc-hint">Read more about the sacred covenant &#9662;</p>
+        </div>
+        <span class="acc-btn" aria-hidden="true">&#9662;</span>
+      </div>
+      <div class="acc-body" id="acc-body-4">
+        <div class="th-callout"><strong>A promise that runs with the horse.</strong> A covenant protects a horse for its entire life.</div>
+        <p class="th-h">How a covenant works</p>
+        <ol class="th-steps"><li>A church member makes a solemn promise &mdash; a vow to protect and perform &mdash; for a horse.</li><li>The covenant is recorded and permanently stored in the H.O.R.S.E.S. Church ecclesiastical Registrum.</li><li>The promise attaches to the horse itself, not the person.</li><li>Every future owner or caretaker is bound to honor it, for the whole of the horse&rsquo;s life &mdash; regardless of their faith or membership.</li></ol>
+        <div class="th-grid">
+          <div class="th-card"><h3>A covenant does</h3><ul><li>Travel with the horse forever</li><li>Bind everyone who comes after</li><li>Stand as a lawful, recorded instrument</li></ul></div>
+          <div class="th-card"><h3>A covenant does not</h3><ul><li>Bind the church</li><li>Bind the member who makes it</li><li>Force anyone to acquire a covenanted horse</li></ul></div>
+          <div class="th-card"><h3>Example</h3><p>A member may covenant that a horse may never leave the USA or be sold for human consumption.</p></div>
+        </div>
+      </div>
     </div>
 
-    <div class="panel" id="ministry">
-      <span class="eyebrow"> The Ministry's Duty</span>
-      <h2>To protect and minister to humanity and horses</h2>
-      <p>The relationship between humanity and horses has developed across thousands of years through companionship, work, transportation, agriculture, warfare, and shared community life. Because of this long relationship, the protection and welfare of both humans and horses can be understood as a matter of responsible stewardship. Protecting horses includes promoting humane treatment, appropriate care, safe environments, responsible ownership, and recognition of their physical and behavioral needs. Protecting humanity includes encouraging safe and respectful interactions with animals, educating people about responsible equine care, and supporting communities in which both people and animals can thrive. These responsibilities are complementary rather than opposing: the well-being of humans and horses is often closely connected.</p><p>The concept of ministry extends beyond preaching or religious instruction and can include acts of service, compassion, education, protection, and practical assistance. A faith-based organization devoted to the relationship between humanity and equines can therefore approach ministry as an opportunity to encourage compassion toward living creatures while also supporting the people responsible for their care. This may include educational programs, community outreach, resources for responsible equine stewardship, assistance in times of need, and advocacy for humane treatment. Such work can reflect the broader principle found throughout religious traditions that those entrusted with responsibility should exercise that responsibility with compassion, wisdom, and integrity.</p><p>Protecting and ministering to humanity and horses ultimately requires recognizing that care must be both compassionate and responsible. Horses should not be romanticized at the expense of proper veterinary, nutritional, environmental, or safety considerations, and human needs should not be overlooked in the pursuit of animal welfare. A balanced approach recognizes the dignity and well-being of both. Through education, service, responsible stewardship, and compassionate action, this ministry seeks to encourage a relationship in which humans and horses are treated with respect, protected from unnecessary harm, and given the opportunity to live healthy and meaningful lives within the communities they share.</p>
+    <div class="panel acc" id="ministry">
+      <div class="acc-head" role="button" tabindex="0" aria-expanded="false" aria-controls="acc-body-5">
+        <div>
+          <span class="eyebrow">The Ministry's Duty</span>
+          <h2>To protect and minister to humanity and horses</h2>
+          <p class="acc-hint">Read more about our ministry &#9662;</p>
+        </div>
+        <span class="acc-btn" aria-hidden="true">&#9662;</span>
+      </div>
+      <div class="acc-body" id="acc-body-5">
+        <p class="th-lead">The well-being of humans and horses is closely connected &mdash; caring for one means caring for both.</p>
+        <div class="th-grid">
+          <div class="th-card"><h3>Protecting horses</h3><ul><li>Humane treatment and proper care</li><li>Safe environments</li><li>Responsible ownership</li><li>Respect for their physical and behavioral needs</li></ul></div>
+          <div class="th-card"><h3>Protecting humanity</h3><ul><li>Safe, respectful interactions with animals</li><li>Education in responsible equine care</li><li>Communities where people and animals thrive</li></ul></div>
+        </div>
+        <p class="th-h">What our ministry looks like</p>
+        <div class="th-chips"><span>Education</span><span>Outreach</span><span>Stewardship resources</span><span>Help in times of need</span><span>Humane advocacy</span></div>
+        <p style="margin-top:14px">Care must be both compassionate and responsible &mdash; never romanticizing horses at the expense of proper veterinary, nutritional or safety needs, and never overlooking human needs along the way.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -248,6 +343,30 @@ function mailSubmit(e, formEl, toAddress, subject){
   var note = formEl.querySelector('.formnote');
   if(note){ note.textContent = 'Your email client should now be open with these details pre-filled. If nothing happens, email us directly at ' + toAddress + '.'; }
 }
+</script>
+<script>
+// Theology: click a section header to show/hide its details
+(function(){
+  function setOpen(panel, open){
+    panel.classList.toggle('open', open);
+    panel.querySelector('.acc-head').setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  document.querySelectorAll('.acc').forEach(function(panel){
+    var head = panel.querySelector('.acc-head');
+    head.addEventListener('click', function(){ setOpen(panel, !panel.classList.contains('open')); });
+    head.addEventListener('keydown', function(e){
+      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); setOpen(panel, !panel.classList.contains('open')); }
+    });
+  });
+  // Links like theology.html#covenant open that section automatically
+  function openFromHash(){
+    if(!location.hash) return;
+    var target = document.getElementById(location.hash.slice(1));
+    if(target && target.classList.contains('acc')){ setOpen(target, true); target.scrollIntoView({block:'start'}); }
+  }
+  openFromHash();
+  window.addEventListener('hashchange', openFromHash);
+})();
 </script>
 </body>
 </html>
