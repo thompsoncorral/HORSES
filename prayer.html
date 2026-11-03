@@ -205,8 +205,17 @@ footer .faq-btn{display:inline-block;background:var(--gold);color:var(--purple-d
       </div>
       <button type="submit" class="btn btn-solid">Submit Prayer Request</button>
       <p class="formnote" id="p-note">Your request is sent securely to the prayer ministry &mdash; no email client needed. You'll see a confirmation below.</p>
-      <p class="formnote" id="p-done" style="display:none;color:var(--purple-deep);">&#10022; Thank you &mdash; your prayer request has been received. You are held in our prayers.</p>
     </form>
+    <div id="p-done" style="display:none;text-align:center;max-width:560px;margin:0 auto;padding:28px 20px;">
+      <p style="font-size:1.6rem;color:var(--gold, #b8902f);margin:0;">&#10022;</p>
+      <h3 style="margin:8px 0 12px;">Thank You</h3>
+      <p>Your prayer request has been received. Our ministers will hold it with reverence &mdash; you are held in our prayers.</p>
+      <p>If you feel called, a gift helps us care for the horses in our keeping and carry on this ministry.</p>
+      <p style="margin-top:20px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+        <a href="donate.html" class="btn btn-solid">Make a Donation</a>
+        <a href="prayer.html" class="btn btn-outline">Submit Another Request</a>
+      </p>
+    </div>
   </div>
 </section>
 
@@ -256,8 +265,11 @@ document.getElementById('prayer-form').addEventListener('submit', function(e){
     body: data,
     headers: { 'Accept': 'application/json' }
   }).then(function(resp){
+    if(!resp.ok){ throw new Error('Status ' + resp.status); }
     form.style.display = 'none';
-    document.getElementById('p-done').style.display = 'block';
+    var done = document.getElementById('p-done');
+    done.style.display = 'block';
+    done.scrollIntoView({behavior:'smooth', block:'center'});
   }).catch(function(err){
     var note = document.getElementById('p-note');
     if(note){ note.textContent = 'Something went wrong sending your request. Please email us at info@horseschurch.org.'; }
