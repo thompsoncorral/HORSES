@@ -122,6 +122,15 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--gold);outline-of
 .faq-item summary{font-family:'Cinzel',serif;font-size:1rem;cursor:pointer;color:var(--purple-deep);}
 .faq-item p{margin-top:10px;color:#4a3960;}
 
+.give-split{display:grid;grid-template-columns:1fr minmax(300px,480px);gap:40px;align-items:start;margin-bottom:24px;}
+.give-ways{background:#fff;border:1px solid var(--parchment-dim);border-left:4px solid var(--gold);border-radius:2px;padding:28px 30px;}
+.give-ways ul{list-style:none;margin:6px 0 0;}
+.give-ways li{padding:14px 0;border-bottom:1px dashed var(--parchment-dim);}
+.give-ways li:last-child{border-bottom:none;padding-bottom:0;}
+.give-ways h3{font-size:1.05rem;margin-bottom:.25em;}
+.give-ways p{margin:0;font-size:.95rem;}
+.give-form{min-height:540px;}
+@media (max-width:820px){.give-split{grid-template-columns:1fr;}.give-form{order:-1;}}
 /* ---- disclosure ---- */
 .disclosure{background:var(--lavender);border:1px solid #d8c7ef;padding:20px 24px;font-size:.88rem;color:#4a3960;margin-top:20px;}
 .disclosure strong{color:var(--purple-deep);}
@@ -181,16 +190,24 @@ footer .faq-btn{display:inline-block;background:var(--gold);color:var(--purple-d
 <section>
   <div class="wrap">
     <div class="divider"><span class="line"></span><span class="line"></span></div>
-    <h2 style="text-align:center;">Choose an Amount</h2>
-    <div class="grid3" style="margin-bottom:18px;">
-            <div class="card" style="text-align:center;"><span class="eyebrow">Tend the Herd</span><h3>$25</h3><p>Feed and everyday care for a horse in the Sanctuary's keeping.</p><a class="btn btn-outline" href="https://donorbox.org/horse-recording-donation?amount=25" target="_blank" rel="noopener">Donate $25</a></div>
-            <div class="card" style="text-align:center;"><span class="eyebrow">Offering to the Sanctum</span><h3>$50</h3><p>An offering that sustains the Sanctuary's daily upkeep and ministry.</p><a class="btn btn-outline" href="https://donorbox.org/horse-recording-donation?amount=50" target="_blank" rel="noopener">Donate $50</a></div>
-            <div class="card" style="text-align:center;"><span class="eyebrow">Blessing for the Covenant</span><h3>$100</h3><p>A blessing that sponsors the full care of a horse under covenant.</p><a class="btn btn-outline" href="https://donorbox.org/horse-recording-donation?amount=100" target="_blank" rel="noopener">Donate $100</a></div>
-    </div>
-    <div class="panel" style="text-align:center;max-width:480px;margin:0 auto 40px;">
-            <span class="eyebrow">Blessings for the Bond</span><h3>Free-Will Offering</h3>
-      <p>Give whatever feels right to you — every gift blesses the bond between horses and the humans who tend them.</p>
-      <a class="btn btn-solid" href="https://donorbox.org/horse-recording-donation" target="_blank" rel="noopener">Give Now</a>
+    <h2 style="text-align:center;">Make Your Gift</h2>
+    <p style="text-align:center;margin:0 auto 32px;">Choose an amount and where you'd like your gift to go. One-time and monthly gifts are both welcome.</p>
+    <div class="give-split">
+      <div class="give-ways">
+        <span class="eyebrow">Where Your Gift Goes</span>
+        <ul>
+          <li><h3>Where Most Needed</h3><p>Lets the Sanctuary direct your gift wherever the need is greatest.</p></li>
+          <li><h3>Care of the Herd</h3><p>Feed, hay, farrier, and veterinary care for the horses in the Sanctuary's keeping.</p></li>
+          <li><h3>Mission &amp; Ministry</h3><p>Sustains the church's teaching, ordination, and outreach.</p></li>
+          <li><h3>The Covenant Registrum</h3><p>Keeps the sacred covenants made for horses recorded and preserved for the whole of their lives.</p></li>
+          <li><h3>Memorial Gift</h3><p>Honor a beloved horse who has passed, and carry their blessing forward.</p></li>
+        </ul>
+      </div>
+      <div class="give-form">
+        <script type="module" src="https://donorbox.org/widgets.js" async></script>
+        <dbox-widget campaign="horse-recording-donation" type="donation_form" designation="Where Most Needed" enable-auto-scroll="true" show-content="false"></dbox-widget>
+        <noscript><p style="text-align:center;"><a class="btn btn-solid" href="https://donorbox.org/horse-recording-donation">Give Now</a></p></noscript>
+      </div>
     </div>
 
     <div class="disclosure">
