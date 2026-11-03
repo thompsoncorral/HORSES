@@ -117,9 +117,34 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--gold);outline-of
 .help{font-size:.85rem;color:#6a5a80;margin-top:4px;}
 .formnote{font-size:.85rem;color:var(--purple-mid);margin-top:14px;}
 
-/* ---- form embed (Google Form) ---- */
-.form-embed{background:#fff;border:1px solid var(--parchment-dim);border-radius:2px;overflow:hidden;max-width:640px;margin:0 auto;box-shadow:0 4px 18px rgba(75,37,120,.08);}
-.form-embed iframe{display:block;width:100%;border:0;}
+/* ---- nomination form (matches Ordination form) ---- */
+#saint-form{max-width:none;}
+#saint-form .formnote{max-width:none;}
+#saint-form input,#saint-form select,#saint-form textarea{background:#fff;border:1.5px solid var(--gold);color:var(--ink);}
+#saint-form input:focus,#saint-form select:focus,#saint-form textarea:focus{outline:none;border-color:var(--purple-royal);box-shadow:0 0 0 3px rgba(201,162,39,.25);}
+.modal-backdrop{display:none;position:fixed;inset:0;background:rgba(36,19,51,.6);z-index:50;align-items:center;justify-content:center;padding:20px;}
+.modal-backdrop.open{display:flex;}
+.modal{background:var(--parchment);border:2px solid var(--gold);border-radius:2px;max-width:560px;width:100%;max-height:88vh;overflow-y:auto;padding:32px;}
+.modal h2{font-size:1.5rem;text-align:center;}
+.modal .review-list{list-style:none;margin:18px 0 6px;}
+.modal .review-list li{display:flex;justify-content:space-between;gap:16px;padding:9px 0;border-bottom:1px dashed var(--parchment-dim);font-size:.95rem;}
+.modal .review-list li span:first-child{font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--purple-royal);}
+.modal .review-list li span:last-child{text-align:right;color:var(--ink);}
+.modal .modal-btns{display:flex;gap:12px;justify-content:center;margin-top:24px;flex-wrap:wrap;}
+.modal .disclosure{margin-top:18px;}
+.o-done{background:#fff;border:1px solid var(--parchment-dim);border-left:4px solid var(--gold);border-bottom:4px solid var(--gold);padding:30px;text-align:center;}
+.o-done h3{margin:0 0 .4em;}
+.o-done p{margin:0 auto;color:var(--purple-royal);max-width:none;}
+#saint-form{margin:0 auto;}
+.cat-list{display:flex;flex-direction:column;gap:10px;}
+.cat-opt{display:flex;gap:12px;align-items:flex-start;background:var(--lavender);border:1.5px solid #d8c7ef;border-radius:2px;padding:12px 16px;cursor:pointer;margin:0;font-family:'EB Garamond',Georgia,serif;font-size:1rem;letter-spacing:normal;text-transform:none;color:var(--ink);}
+.cat-opt input{width:18px;height:18px;margin-top:4px;flex:0 0 auto;accent-color:var(--purple-deep);}
+.cat-opt strong{display:block;font-family:'Cinzel',Georgia,serif;font-weight:600;font-size:.92rem;color:var(--purple-deep);}
+.cat-opt span{font-size:.95rem;color:#4a3960;line-height:1.5;}
+.cat-opt:has(input:checked){border-color:var(--gold);background:#fff;box-shadow:0 4px 14px rgba(75,37,120,.1);}
+.req{color:var(--gold);}
+#saint-form .help{max-width:none;}
+#s-error{color:#8a1f1f;text-align:center;}
 
 /* ---- faq ---- */
 .faq-item{border-bottom:1px solid var(--parchment-dim);padding:18px 0;}
@@ -185,10 +210,52 @@ footer .faq-btn{display:inline-block;background:var(--gold);color:var(--purple-d
 <div class="wrap">
 <div class="divider"><span class="line"></span><span class="line"></span></div>
 <h2 style="text-align:center;">Nomination Form</h2>
-<div class="form-embed" style="margin:0 auto;">
-<iframe src="https://docs.google.com/forms/d/e/1FAIpQLScGhnAnAwNxfHknzOp4J-Ov8ukhtL0DNJ7goe0YFX_Mb02qGA/viewform?embedded=true" width="100%" height="1400" frameborder="0" marginheight="0" marginwidth="0">Loading&hellip;</iframe>
-</div>
-<p class="formnote" style="text-align:center;max-width:640px;margin:14px auto 56px;">Form not loading? <a href="https://docs.google.com/forms/d/e/1FAIpQLScGhnAnAwNxfHknzOp4J-Ov8ukhtL0DNJ7goe0YFX_Mb02qGA/viewform" target="_blank" rel="noopener">Open the nomination form in a new tab</a>.</p>
+<form id="saint-form" novalidate>
+      <div class="field">
+        <label for="s-animal">Animal&rsquo;s name <span class="req">*</span></label>
+        <input type="text" id="s-animal" name="Animal's name" required>
+      </div>
+      <div class="field">
+        <label for="s-type">Animal type <span class="req">*</span></label>
+        <select id="s-type" name="Animal type" required><option value="">Select&hellip;</option><option>Horse</option><option>Donkey</option></select>
+      </div>
+      <div class="field">
+        <label for="s-name">Your name <span class="req">*</span></label>
+        <input type="text" id="s-name" name="Your name" required>
+      </div>
+      <div class="field">
+        <label for="s-email">Your email <span class="req">*</span></label>
+        <input type="email" id="s-email" name="email" required>
+      </div>
+      <div class="field">
+        <label id="s-cat-label">Recognition category <span class="req">*</span></label>
+        <div class="cat-list" role="radiogroup" aria-labelledby="s-cat-label">
+          <label class="cat-opt"><input type="radio" name="Recognition category" value="The Valiant Hero (Action &amp; Grit)" required><span><strong>The Valiant Hero (Action &amp; Grit)</strong>Honoring animals that showed extraordinary bravery, overcame massive obstacles, and lifted the spirits of a community or nation through their physical deeds.</span></label>
+          <label class="cat-opt"><input type="radio" name="Recognition category" value="The Compassionate Guardian (Pure Soul &amp; Good Deeds)"><span><strong>The Compassionate Guardian (Pure Soul &amp; Good Deeds)</strong>Honoring animals that lived a life of quiet, selfless service, showcasing divine empathy, loyalty, and unconditional love.</span></label>
+          <label class="cat-opt"><input type="radio" name="Recognition category" value="The True &quot;St.&quot; (Divine Vessel)"><span><strong>The True “St.” (Divine Vessel)</strong>Honoring an animal that transcended being just a companion and acted as a literal, holy instrument of God’s grace on earth.</span></label>
+        </div>
+      </div>
+      <div class="field">
+        <label for="s-faith">Faith tradition (optional)</label>
+        <select id="s-faith" name="Faith tradition"><option value="">Select a tradition&hellip;</option></select>
+        <p class="help">Pick the tradition closest to your own, or H.O.R.S.E.S. Church for a non-denominational recognition, and you&rsquo;ll see the matching honorific titles.</p>
+      </div>
+      <div class="field" id="s-title-field" hidden>
+        <label for="s-title">Title (optional)</label>
+        <select id="s-title" name="Title"><option value="">Select a title&hellip;</option></select>
+      </div>
+      <div class="field">
+        <label for="s-why">Why does this animal deserve this honor? <span class="req">*</span></label>
+        <textarea id="s-why" name="Why this animal deserves this honor" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-solid">Submit Nomination</button>
+      <p class="formnote">You&rsquo;ll be asked to review your nomination before it&rsquo;s sent.</p>
+    </form>
+    <div id="s-done" class="o-done" style="display:none;margin:0 auto 56px;max-width:640px;" role="status" tabindex="-1">
+      <h3>Thank you for your nomination!</h3>
+      <p id="s-done-msg">Our sainthood committee reviews every nomination for the gallery of the canonized.</p>
+    </div>
+    <p class="formnote" style="text-align:center;max-width:640px;margin:14px auto 56px;" id="s-after">Fields marked <span class="req">*</span> are required.</p>
 
 <div class="divider"><span class="line"></span><span class="line"></span></div>
 <h2 style="text-align:center;">Ecclesiastical Tenets for Nominations</h2>
@@ -224,6 +291,85 @@ footer .faq-btn{display:inline-block;background:var(--gold);color:var(--purple-d
 </div>
 </div>
 </footer>
+
+<!-- ================= CONFIRM MODAL ================= -->
+<div class="modal-backdrop" id="confirm-backdrop">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="confirm-title">
+    <h2 id="confirm-title">Review Your Nomination</h2>
+    <p style="text-align:center;color:var(--purple-mid);">Please confirm the details below are correct.</p>
+    <ul class="review-list">
+      <li><span>Animal</span><span id="rv-animal">&mdash;</span></li>
+      <li><span>Animal Type</span><span id="rv-type">&mdash;</span></li>
+      <li><span>Nominated By</span><span id="rv-name">&mdash;</span></li>
+      <li><span>Email</span><span id="rv-email">&mdash;</span></li>
+      <li><span>Category</span><span id="rv-cat">&mdash;</span></li>
+      <li><span>Faith Tradition</span><span id="rv-faith">&mdash;</span></li>
+      <li><span>Title</span><span id="rv-title">&mdash;</span></li>
+    </ul>
+    <p id="s-error" style="display:none;margin:14px auto 0;"></p>
+    <div class="modal-btns">
+      <button type="button" class="btn btn-outline" id="btn-edit">Edit My Nomination</button>
+      <button type="button" class="btn btn-solid" id="btn-confirm">Confirm &amp; Submit</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  // Faith tradition -> honorific titles (carried over from the original Google Form)
+  var TRADITIONS = /*SAINT_DATA*/[[["H.O.R.S.E.S. Church"],["Equine Saint","Blessed Equine","Hallowed Equine","Venerated Equine","Equine Guardian","Sacred Equine","Equine Protector","Guardian of the Herd","Keeper of Harmony"]],[["Christianity"],["Saint","Blessed","Venerable","Holy One","Servant of God","Confessor","Martyr"]],[["Roman Catholicism"],["Saint","Blessed","Venerable","Servant of God","Confessor","Doctor of the Church","Martyr"]],[["Eastern Orthodox Christianity"],["Saint","Holy One","Righteous One","Venerable","Confessor","Martyr","Holy Fool"]],[["Oriental Orthodox Christianity"],["Saint","Holy One","Holy Martyr","Confessor","Righteous One"]],[["Anglicanism","Lutheranism"],["Saint","Blessed","Holy One","Martyr","Confessor"]],[["Methodism","Pentecostal Christianity","Evangelical Christianity"],["Saint","Holy One","Blessed","Servant of God"]],[["Baptist Christianity","Presbyterian Christianity","Reformed Christianity"],["Saint","Holy One","Blessed"]],[["Latter-day Saint Movement (Mormonism)"],["Saint","Elder","Apostle","Prophet","Seer","Revelator"]],[["Coptic Christianity","Armenian Apostolic Christianity"],["Saint","Holy Martyr","Confessor","Venerable"]],[["Syriac Christianity","Assyrian Church of the East"],["Saint","Martyr","Confessor","Holy One"]],[["Maronite Christianity"],["Saint","Blessed","Venerable","Martyr"]],[["Old Catholicism"],["Saint","Blessed","Venerable","Holy One"]],[["Quakerism"],["Friend","Minister","Elder","Faithful Servant"]],[["Seventh-day Adventism"],["Elder","Pastor","Evangelist","Prophet","Saint"]],[["Jehovah's Witnesses"],["Elder","Anointed One","Faithful Servant"]],[["Church of the Nazarene"],["Saint","Elder","Minister","Pastor"]],[["Salvation Army"],["Salvationist","Officer","Minister","Soldier"]],[["Church of God traditions"],["Saint","Elder","Minister","Overseer"]],[["African Independent Churches"],["Prophet","Apostle","Bishop","Pastor","Elder","Saint"]],[["Unitarian Universalism"],["Reverend","Minister","Elder","Teacher","Beloved Community Member"]],[["Christian Science"],["Practitioner","Reader","Teacher","Member"]],[["Unity"],["Minister","Teacher","Practitioner","Spiritual Leader"]],[["Greek Orthodoxy"],["Saint","Venerable","Righteous One","Confessor","Martyr"]],[["Russian Orthodoxy"],["Saint","Venerable","Righteous One","Confessor","Fool-for-Christ","Martyr"]],[["Serbian Orthodoxy","Georgian Orthodoxy"],["Saint","Venerable","Righteous One","Martyr"]],[["Romanian Orthodoxy"],["Saint","Venerable","Righteous One","Confessor"]],[["Ethiopian Orthodox Christianity"],["Saint","Holy One","Martyr","Confessor","Righteous One"]],[["Eritrean Orthodox Christianity"],["Saint","Holy One","Martyr","Confessor"]],[["Judaism"],["Tzadik","Hasid","Kadosh","Rabbi","Sage"]],[["Hasidic Judaism"],["Tzadik","Rebbe","Hasid","Rabbi"]],[["Kabbalistic Judaism"],["Tzadik","Mekubal","Kadosh","Rabbi"]],[["Samaritanism"],["Kohen","High Priest","Priest","Righteous One","Sage"]],[["Islam"],["Wali","Wali Allah","Awliya","Pir","Qutb","Sheikh"]],[["Sufism"],["Wali","Wali Allah","Ghawth","Pir","Qutb","Sheikh","Murshid","Arif"]],[["Shi'a Islam"],["Imam","Ayatollah","Marja","Wali","Shahid"]],[["Ismaili Islam (Ismailism)"],["Imam","Pir","Dai","Hujjat","Wali"]],[["Druze"],["Sheikh","Pir","Uqqal","Imam"]],[["Ahmadiyya"],["Khalifa","Mujaddid","Saint","Reformer"]],[["Yazidism"],["Sheikh","Pir","Qewwal","Holy One"]],[["Alevism"],["Dede","Baba","Pir","Veli"]],[["Bektashism"],["Baba","Dede","Pir","Veli"]],[["Baháʼí Faith"],["Manifestation of God","Hand of the Cause","Disciple","Servant of God"]],[["Zoroastrianism"],["Ashavan","Mobed","Dastur","Saoshyant"]],[["Manichaeism"],["Elect","Perfect","Teacher","Apostle"]],[["Mandaeism"],["Tarmida","Ganzibra","Rishama","Priest"]],[["Hinduism"],["Sant","Sadhu","Rishi","Maharishi","Mahatma","Swami","Guru","Acharya","Muni","Yogi","Yogini","Siddha"]],[["Vaishnavism"],["Sant","Sadhu","Acharya","Guru","Goswami","Swami","Mahatma","Bhagavata"]],[["Shaivism"],["Sadhu","Guru","Swami","Siddha","Natha","Mahayogi"]],[["Shaktism"],["Sadhu","Guru","Swami","Siddha","Yogini","Mahatma"]],[["Advaita Vedanta"],["Swami","Acharya","Guru","Paramahamsa","Jivanmukta","Rishi"]],[["Vedanta"],["Swami","Acharya","Guru","Paramahamsa","Rishi","Mahatma"]],[["Lingayatism"],["Jangama","Guru","Mahatma","Sharana"]],[["Arya Samaj"],["Acharya","Swami","Rishi","Pandit"]],[["Brahmo Samaj"],["Acharya","Guru","Teacher","Mahatma"]],[["Ayyavazhi"],["Ayya","Avatar","Saint","Swami"]],[["ISKCON / Gaudiya Vaishnavism"],["Guru","Goswami","Acharya","Sadhu","Sant","Mahatma"]],[["Ramakrishna tradition"],["Swami","Paramahamsa","Mahatma","Guru","Sadhu"]],[["Sahaja Yoga"],["Shri Mataji","Guru","Realized Soul","Yogi"]],[["Radha Soami"],["Sant","Satguru","Master","Satsangi"]],[["Sant Mat"],["Sant","Satguru","Master","Saint"]],[["Sathya Sai tradition"],["Avatar","Guru","Swami","Bhagavan"]],[["Sikhism"],["Sant","Bhagat","Guru","Gursikh","Brahmgyani","Mahapurakh"]],[["Buddhism"],["Buddha","Arhat","Arahant","Bodhisattva","Mahasattva","Thera","Therī","Bhikkhu","Bhikkhuni"]],[["Theravada Buddhism"],["Buddha","Arahant","Thera","Therī","Bhikkhu","Bhikkhuni","Mahathera"]],[["Mahayana Buddhism"],["Buddha","Bodhisattva","Mahasattva","Arhat","Acarya","Mahasiddha"]],[["Vajrayana Buddhism"],["Buddha","Bodhisattva","Mahasiddha","Lama","Rinpoche","Tulku","Khenpo","Yogi","Yogini"]],[["Tibetan Buddhism"],["Buddha","Bodhisattva","Rinpoche","Tulku","Lama","Khenpo","Mahasiddha","Geshe"]],[["Zen Buddhism"],["Buddha","Bodhisattva","Roshi","Zen Master","Patriarch","Ancestor"]],[["Pure Land Buddhism"],["Buddha","Bodhisattva","Saint","Master","Patriarch"]],[["Nichiren Buddhism"],["Buddha","Bodhisattva","Saint","Daishonin","Shonin"]],[["Hoa Hao Buddhism"],["Prophet","Saint","Teacher","Patriarch"]],[["Bön"],["Tonpa","Lama","Rinpoche","Yogi","Adept"]],[["Jainism"],["Tirthankara","Arihant","Arhat","Siddha","Sadhu","Sadhvi","Muni","Acharya"]],[["Digambara Jainism"],["Tirthankara","Siddha","Arihant","Muni","Acharya"]],[["Svetambara Jainism"],["Tirthankara","Siddha","Arihant","Sadhu","Sadhvi","Acharya"]],[["Daoism"],["Xian","Zhenren","Shengren","Daxian","Daoist Immortal","Sage","Perfected One"]],[["Quanzhen Daoism"],["Xian","Zhenren","Immortal","Perfected One","Patriarch"]],[["Zhengyi Daoism"],["Celestial Master","Immortal","Perfected One","Sage"]],[["Confucianism"],["Shengren","Sage","Junzi","Xianren","Daren"]],[["Shinto"],["Kami","Shinmei","Reijin","Sorei"]],[["Japanese Folk Religion"],["Kami","Sorei","Reijin","Hotoke"]],[["Ryukyuan Religion"],["Kami","Utaki Spirit","Ancestor","Priestess"]],[["Shugendō"],["Yamabushi","Shugenja","Ascetic","Master"]],[["Tenrikyo"],["Yoboku","Minister","Teacher","Shinbashira"]],[["Konkokyo"],["Konko Daijin","Minister","Teacher"]],[["Oomoto"],["Kyōshu","Teacher","Spiritual Leader"]],[["Korean Shamanism"],["Mudang","Manshin","Spirit Medium","Shaman"]],[["Chinese Folk Religion"],["Xian","Shengren","Immortal","Deified Ancestor","Sage"]],[["Caodaism (Cao Dai)"],["Pope","Cardinal","Archbishop","Saint","Prophet","Immortal"]],[["Tengrism"],["Tengri","Erlik","Ancestor","Spirit Master","Shaman"]],[["Mongolian Shamanism"],["Shaman","Böö","Ancestor","Spirit Master"]],[["Siberian Shamanism"],["Shaman","Spirit Master","Ancestor","Healer"]],[["Ainu Religion"],["Kamuy","Itako","Shaman","Ancestor"]],[["Yoruba Religion"],["Orisha","Babalawo","Iyalawo","Egungun","Awo"]],[["Ifá"],["Babalawo","Iyalawo","Awo","Orisha"]],[["Vodun"],["Vodou Priest","Houngan","Mambo","Lwa"]],[["Haitian Vodou"],["Houngan","Mambo","Lwa","Gangan"]],[["Beninese Vodun"],["Vodun Priest","Bokonon","Lwa","Ancestor"]],[["Candomblé"],["Orixá","Babalorixá","Iyalorixá","Egungun"]],[["Umbanda"],["Orixá","Caboclo","Preto Velho","Pai de Santo","Mãe de Santo"]],[["Santería / Lucumí"],["Orisha","Babalawo","Olorisha","Santero","Santera"]],[["Quimbanda"],["Exu","Pombagira","Tata","Yaya"]],[["Traditional Akan Religion"],["Nana","Abosom","Ancestor","Priest","Priestess"]],[["Dagara Religion"],["Earth Priest","Ancestor","Elder","Diviner"]],[["Dinka Traditional Religion"],["Diviner","Spirit Medium","Ancestor","Priest"]],[["Maasai Traditional Religion"],["Laibon","Elder","Prophet","Spiritual Leader"]],[["Zulu Traditional Religion"],["Sangoma","Inyanga","Ancestor","Diviner"]],[["Xhosa Traditional Religion"],["Sangoma","Diviner","Ancestor","Elder"]],[["Shona Traditional Religion"],["N'anga","Spirit Medium","Ancestor","Mhondoro"]],[["Igbo Traditional Religion"],["Dibia","Eze","Ancestor","Deity"]],[["Dogon Religion"],["Hogon","Diviner","Elder","Ancestor"]],[["Ancient Egyptian Religion"],["Akhu","Netjer","Imakh","Deified Ancestor","Priest"]],[["Ancient Greek Religion"],["Hero","Heros","Daimon","Hierophant","Priest"]],[["Ancient Roman Religion"],["Divus","Hero","Augur","Pontifex","Priest"]],[["Etruscan Religion"],["Priest","Haruspex","Diviner","Ancestor"]],[["Minoan Religion"],["Priestess","Priest","Divine One","Sacred Ancestor"]],[["Celtic Religion"],["Druid","Ovate","Bard","Seer","Priest"]],[["Druidry"],["Druid","Ovate","Bard","Archdruid"]],[["Druid Revival"],["Druid","Archdruid","Ovate","Bard"]],[["Gaelic Paganism"],["Seer","Priest","Bard","Druid"]],[["Norse Religion"],["Godi","Gydja","Seer","Völva","Seiðkona","Ancestor"]],[["Germanic Paganism"],["Godi","Gydja","Seer","Völva","Ancestor"]],[["Slavic Paganism","Baltic Paganism","Finnish Paganism","Sámi Traditional Religion","Basque Traditional Religion","Wicca","Modern Witchcraft","Thelema","Theosophy","Anthroposophy","New Age","New Thought","Spiritualism","Spiritism","Rastafari"],null]];
+  var ENDPOINT = 'https://formspree.io/f/xeaqvzrn';
+  var form = document.getElementById('saint-form');
+  var faith = document.getElementById('s-faith'), title = document.getElementById('s-title'), titleField = document.getElementById('s-title-field');
+  var backdrop = document.getElementById('confirm-backdrop'), btnConfirm = document.getElementById('btn-confirm'), err = document.getElementById('s-error');
+  var map = {};
+  TRADITIONS.forEach(function(g){ g[0].forEach(function(n){ map[n] = g[1] || []; var o = document.createElement('option'); o.textContent = n; faith.appendChild(o); }); });
+  faith.addEventListener('change', function(){
+    var list = map[faith.value] || [];
+    title.innerHTML = '<option value="">Select a title\u2026</option>';
+    list.forEach(function(t){ var o = document.createElement('option'); o.textContent = t; title.appendChild(o); });
+    titleField.hidden = !list.length;
+  });
+  function v(id){ return document.getElementById(id).value.trim(); }
+  function cat(){ var c = form.querySelector('input[name="Recognition category"]:checked'); return c ? c.value : ''; }
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if(!form.checkValidity()){ form.reportValidity(); return; }
+    document.getElementById('rv-animal').textContent = v('s-animal');
+    document.getElementById('rv-type').textContent = v('s-type');
+    document.getElementById('rv-name').textContent = v('s-name');
+    document.getElementById('rv-email').textContent = v('s-email');
+    document.getElementById('rv-cat').textContent = cat();
+    document.getElementById('rv-faith').textContent = v('s-faith') || 'Not selected';
+    document.getElementById('rv-title').textContent = (!titleField.hidden && v('s-title')) || 'Not selected';
+    err.style.display = 'none';
+    backdrop.classList.add('open');
+  });
+  document.getElementById('btn-edit').addEventListener('click', function(){ backdrop.classList.remove('open'); });
+  btnConfirm.addEventListener('click', function(){
+    var data = new FormData(form);
+    if(titleField.hidden) data.delete('Title');
+    data.append('_subject', 'Sainthood Nomination: ' + v('s-animal'));
+    btnConfirm.disabled = true; btnConfirm.textContent = 'Sending\u2026';
+    fetch(ENDPOINT, { method:'POST', body:data, headers:{ 'Accept':'application/json' } })
+      .then(function(r){ if(!r.ok) throw new Error('HTTP ' + r.status); })
+      .then(function(){
+        backdrop.classList.remove('open');
+        form.style.display = 'none';
+        document.getElementById('s-after').style.display = 'none';
+        document.getElementById('s-done-msg').textContent = 'Thank you, ' + v('s-name') + '. Your nomination of ' + v('s-animal') + ' has been received, and our sainthood committee will review it for the gallery of the canonized.';
+        var done = document.getElementById('s-done'); done.style.display = 'block'; done.focus();
+        done.scrollIntoView({behavior:'smooth', block:'center'});
+      })
+      .catch(function(e){
+        console.error('Nomination submission failed:', e);
+        err.textContent = 'Sorry, your nomination could not be sent. Please try again or email info@horseschurch.org.';
+        err.style.display = 'block';
+      })
+      .then(function(){ btnConfirm.disabled = false; btnConfirm.textContent = 'Confirm & Submit'; });
+  });
+})();
+</script>
 
 </body>
 </html>
