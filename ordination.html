@@ -118,7 +118,7 @@ section{padding:56px 0;}
 .pkg .tag{align-self:center;background:var(--gold);color:var(--purple-deep);font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;margin-bottom:10px;}
 
 .pkg .tagline{font-size:.85rem;color:var(--purple-mid);margin-bottom:0;}
-.pkg .product-img{display:block;width:100%;max-width:240px;height:auto;margin:0 auto 16px;border:1px solid var(--parchment-dim);}
+.pkg .product-img{display:block;height:260px;width:auto;max-width:100%;object-fit:contain;margin:0 auto 16px;border:1px solid var(--parchment-dim);}
 
 /* delivery toggle */
 .delivery-toggle{display:flex;gap:8px;margin:14px 0;background:var(--lavender);border:1px solid #d8c7ef;border-radius:3px;padding:4px;max-width:360px;margin-left:auto;margin-right:auto;}
@@ -230,7 +230,7 @@ footer .faq-btn{display:inline-block;background:var(--gold);color:var(--purple-d
 .addon-row:last-of-type{border-bottom:0;}
 .addon-name{font-family:'Cinzel',Georgia,serif;font-size:.92rem;color:var(--purple-deep);}
 .addon-label{display:flex;align-items:center;gap:12px;}
-.addon-thumb{height:84px;width:auto;max-width:110px;object-fit:contain;flex:none;border:1px solid #d8c7ef;background:#DEC9ED;border-radius:2px;}
+.addon-thumb{width:84px;height:84px;object-fit:contain;flex:none;border:1px solid #d8c7ef;background:#DEC9ED;border-radius:2px;}
 .addon-choices{display:flex;flex-wrap:wrap;align-items:center;gap:6px 16px;}
 .addon-choices label{display:inline-flex;align-items:center;gap:6px;margin:0;font-family:'EB Garamond',Georgia,serif;font-size:1rem;letter-spacing:normal;text-transform:none;color:var(--ink);cursor:pointer;}
 .addon-choices input[type=radio]{width:auto;accent-color:var(--purple-deep);}
@@ -460,11 +460,14 @@ nav a.nav-record:hover{background:var(--gold-light);color:var(--purple-deep);}
         </div>
 
         <div class="addon-row">
-          <div class="addon-name">Ordination Bible Cover &mdash; $49</div>
+          <div class="addon-label">
+            <img class="addon-thumb" style="background:#fff" src="assets/img/cover-thumb.jpg" alt="White PU leather religious text cover with the church emblem on the front" loading="lazy">
+            <div class="addon-name">Religious Text Cover &mdash; $49</div>
+          </div>
           <div class="addon-choices">
             <label><input type="radio" name="addon-bible" value="" checked> No</label>
             <label><input type="radio" name="addon-bible" value="yes"> Yes</label>
-            <select id="bible-size" aria-label="Bible cover size" hidden>
+            <select id="bible-size" aria-label="Cover size" hidden>
               <option value="">Choose size&hellip;</option>
               <option>M</option><option>L</option><option>XL</option><option>2XL</option>
             </select>
@@ -482,7 +485,7 @@ nav a.nav-record:hover{background:var(--gold-light);color:var(--purple-deep);}
           </div>
         </div>
 
-        <p class="addon-note" style="margin:10px 0 0;"><a href="#keepsake-info">More about the Bible cover and stole &darr;</a></p>
+        <p class="addon-note" style="margin:10px 0 0;"><a href="#keepsake-info">More about the cover and stole &darr;</a></p>
       </div>
 
       <div class="order-summary panel" id="order-summary">
@@ -502,10 +505,11 @@ nav a.nav-record:hover{background:var(--gold-light);color:var(--purple-deep);}
         <h3>About Our Keepsakes</h3>
         <div class="grid3" style="margin:0;">
           <div class="pkg">
-            <h3>Ordination Bible Cover</h3>
+            <img class="product-img" src="assets/img/cover-religious-text.jpg" alt="White PU leather religious text cover with the church emblem on the front" loading="lazy">
+            <h3>Religious Text Cover</h3>
             <div class="price">$49</div>
             <ul>
-              <li>PU leather cover with the church crest on the front</li>
+              <li>PU leather cover with the church emblem on the front</li>
               <li>Sizes M through 2XL</li>
               <li>Made to order &mdash; please allow about 2 weeks</li>
             </ul>
