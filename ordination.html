@@ -431,10 +431,10 @@ nav a.nav-record:hover{background:var(--gold-light);color:var(--purple-deep);}
       </div>
 
       <div class="builder-panel panel" id="delivery-picker" style="display:none;">
-        <h3>2. Delivery Method</h3>
+        <h3 id="delivery-heading">2. Delivery Method</h3>
         <div class="delivery-toggle">
-          <input type="radio" name="main-delivery" id="delivery-digital" value="digital" checked><label for="delivery-digital">Digital</label>
-          <input type="radio" name="main-delivery" id="delivery-physical" value="physical"><label for="delivery-physical">Printed &amp; Mailed</label>
+          <input type="radio" name="main-delivery" id="delivery-digital" value="digital" checked><label for="delivery-digital" id="lbl-delivery-digital">Digital</label>
+          <input type="radio" name="main-delivery" id="delivery-physical" value="physical"><label for="delivery-physical" id="lbl-delivery-physical">Printed &amp; Mailed</label>
         </div>
       </div>
 
@@ -678,6 +678,16 @@ function formspreeSubmit(formEl, endpoint, subject){
     var base = basePackage();
     document.querySelectorAll('.pkg-option').forEach(function(el){ el.classList.toggle('selected', el === selectedPackageEl()); });
     deliveryPicker.style.display = base === 'free' ? 'none' : 'block';
+    // show the actual price on each delivery button for the package just chosen
+    if (base !== 'free') {
+      var sel = selectedPackageEl();
+      var itemName = base === 'cert' ? 'Ordination Certificate' : 'Letter of Good Standing';
+      document.getElementById('delivery-heading').textContent = '2. Delivery for your ' + itemName;
+      if (sel) {
+        document.getElementById('lbl-delivery-digital').textContent = 'Digital — $' + sel.dataset.digitalPrice;
+        document.getElementById('lbl-delivery-physical').textContent = 'Printed & mailed — $' + sel.dataset.physicalPrice;
+      }
+    }
     document.getElementById('addons-step').textContent = base === 'free' ? '2.' : '3.';
     document.getElementById('addon-letter-row').hidden = base === 'letter';
     document.getElementById('addon-cert-row').hidden = base !== 'letter';
