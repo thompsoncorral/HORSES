@@ -179,6 +179,8 @@ nav a.nav-record:hover{background:var(--gold-light);color:var(--purple-deep);}
 .gthumbs{display:flex;gap:8px;justify-content:center;margin-top:8px;flex-wrap:wrap;}
 .gthumbs img{width:56px;height:56px;object-fit:cover;border:2px solid var(--parchment-dim);cursor:pointer;}
 .gthumbs img.on{border-color:var(--gold);}
+.gletter{display:flex;align-items:center;gap:10px;margin:0 0 14px;font-size:.98rem;cursor:pointer;}
+.gletter input{width:18px;height:18px;accent-color:var(--purple-royal);}
 </style>
 </head>
 <body>
@@ -243,6 +245,7 @@ nav a.nav-record:hover{background:var(--gold-light);color:var(--purple-deep);}
           <div class="gf" id="fColor" hidden><label for="color">Hat color</label><select id="color"><option>Heather Gray &amp; Black</option><option>Khaki</option><option>Pink</option><option>Orange &amp; Khaki</option><option>Silver</option><option>White</option></select></div>
           <div class="gf"><label for="amt">Gift amount</label><div class="gamt">$<input id="amt" type="number" min="1" step="1" value="72" inputmode="decimal"></div><small id="amtNote"></small></div>
         </div>
+        <label class="gletter"><input type="checkbox" id="letter"> Yes, send me the monthly church letter</label>
         <button class="btn btn-solid gbtn" id="giveBtn" type="submit">Give</button>
         <p id="giftErr" style="color:#a3253f;margin:8px 0 0;font-size:.9rem;"></p>
         <p class="gtax">Secure checkout through Stripe. Gifts ship within the U.S. to the address you enter at checkout. Your receipt shows the tax-deductible amount: with the hat, your full gift is tax-deductible; the t-shirt ($28 value) and the shirt &amp; hat ($53 value) are subtracted from your gift.</p>
@@ -276,7 +279,7 @@ nav a.nav-record:hover{background:var(--gold-light);color:var(--purple-deep);}
           var g=f.gift.value,m=mins[g],v=+amt.value;
           if(!(v>=m)){amt.value=m;v=m;}
           err.textContent='';btn.disabled=true;btn.textContent='One moment\u2026';
-          fetch('https://registrum.eve-868.workers.dev/api/church-gift',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({gift:g,amount:v,size:document.getElementById('size').value,color:document.getElementById('color').value})})
+          fetch('https://registrum.eve-868.workers.dev/api/church-gift',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({gift:g,amount:v,letter:document.getElementById('letter').checked,size:document.getElementById('size').value,color:document.getElementById('color').value})})
             .then(function(r){return r.json().then(function(d){if(!r.ok||!d.url)throw new Error(d.error||'Something went wrong.');location.href=d.url;});})
             .catch(function(e){err.textContent=e.message+' Please try again, or use the form above.';btn.disabled=false;btn.textContent='Give';});
         });
