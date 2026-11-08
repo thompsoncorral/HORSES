@@ -158,20 +158,22 @@ footer .faq-btn{display:inline-block;background:var(--gold);color:var(--purple-d
 nav a.nav-record{color:var(--purple-deep);background:linear-gradient(90deg,var(--gold-light),var(--gold));padding:6px 12px;border-radius:2px;border-bottom:none;font-weight:600;}
 nav a.nav-record:hover{background:var(--gold-light);color:var(--purple-deep);}
 .gifts{margin:56px 0 8px;}
-.gift-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;margin-top:28px;}
-.gift-card{background:#fff;border:1px solid var(--parchment-dim);border-radius:2px;padding:22px;text-align:center;display:flex;flex-direction:column;}
-.gift-card.featured{border:2px solid var(--gold);}
-.gift-card img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;background:#f4f4f4;margin-bottom:14px;}
-.gift-card h3{margin-bottom:4px;}
-.gift-amt{font-family:'Cinzel',Georgia,serif;font-size:1.5rem;color:var(--purple-royal);margin-bottom:8px;}
-.gift-card p{font-size:.95rem;margin:0 auto 16px;}
-.gift-card .btn{margin-top:auto;}
-.gift-thumbs{display:flex;gap:6px;justify-content:center;margin:-6px 0 12px;flex-wrap:wrap;}
-.gift-thumbs img{width:44px;height:44px;margin:0;border:1px solid var(--parchment-dim);}
-.gift-pair{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:14px;}
-.gift-pair img{margin:0;}
-.gift-how{background:var(--lavender);border:1px solid #d8c7ef;padding:18px 22px;margin-top:28px;font-size:.95rem;}
-.gift-how p{margin:0 0 .5em;max-width:none;}
+.gift-box{max-width:560px;margin:24px auto 0;background:#fff;border:1px solid var(--parchment-dim);padding:22px;}
+.gopt{display:flex;align-items:center;gap:12px;padding:10px 12px;border:1px solid var(--parchment-dim);border-radius:2px;margin-bottom:8px;cursor:pointer;}
+.gopt.on{border-color:var(--gold);background:#fdf9ee;}
+.gopt input{accent-color:var(--purple-royal);width:18px;height:18px;flex:none;}
+.gimg{width:48px;height:48px;object-fit:cover;flex:none;background:#f4f4f4;}
+.gnone{display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:1.3rem;}
+.gpair{display:flex;width:60px;gap:2px;background:none;}.gpair img{width:29px;height:48px;object-fit:cover;}
+.gname{flex:1;font-family:'Cinzel',Georgia,serif;font-size:.95rem;color:var(--purple-deep);}
+.gmin{color:var(--purple-royal);font-size:.95rem;white-space:nowrap;}
+.gfields{display:flex;flex-wrap:wrap;gap:14px;margin:16px 0;}
+.gf{flex:1 1 150px;}.gf label{display:block;font-family:'Cinzel',Georgia,serif;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--purple-royal);margin-bottom:4px;}
+.gf select,.gamt{width:100%;padding:9px 10px;border:1px solid #cbb8e6;background:var(--lavender);font-family:inherit;font-size:1rem;}
+.gamt{display:flex;align-items:center;gap:4px;}.gamt input{padding:0;height:auto;border:0;background:transparent;font:inherit;width:100%;outline:none;}
+.gf small{display:block;font-size:.8rem;color:#6a5a80;margin-top:4px;}
+.gbtn{width:100%;padding:14px;font-size:.85rem;}
+.gtax{font-size:.82rem;color:#6a5a80;margin:12px 0 0;max-width:none;}
 </style>
 </head>
 <body>
@@ -221,36 +223,39 @@ nav a.nav-record:hover{background:var(--gold-light);color:var(--purple-deep);}
 
     <div class="gifts" id="thank-you-gifts">
       <h2 style="text-align:center;">Thank-You Gifts</h2>
-      <p style="text-align:center;margin:0 auto;">Give a one-time gift to the mission and purposes of H.O.R.S.E.S. Church, and we'll send you a thank-you gift to wear.</p>
-      <div class="gift-grid">
-        <div class="gift-card">
-          <img src="assets/gifts/shirt-front.jpg" alt="White H.O.R.S.E.S. Church t-shirt with the compass-rose logo on the chest" loading="lazy">
-          <div class="gift-thumbs"><img src="assets/gifts/shirt-back.jpg" alt="Back of shirt with horseschurch.org" loading="lazy"><img src="assets/gifts/shirt-model.jpg" alt="Shirt being worn" loading="lazy"></div>
-          <h3>The Church T-Shirt</h3>
-          <div class="gift-amt">$72</div>
-          <p>Soft white tee with the H.O.R.S.E.S. Church logo on the chest and horseschurch.org across the back.</p>
-          <a class="btn btn-solid" href="https://donorbox.org/horse-recording-donation?amount=72" target="_blank" rel="noopener">Give $72</a>
+      <p style="text-align:center;margin:0 auto;">Choose a thank-you gift with your one-time gift to the mission and purposes of H.O.R.S.E.S. Church.</p>
+      <form class="gift-box" id="giftForm" onsubmit="return false">
+        <label class="gopt"><input type="radio" name="gift" value="none" checked><span class="gimg gnone">&#10022;</span><span class="gname">No gift, just give</span><span class="gmin">any amount</span></label>
+        <label class="gopt"><input type="radio" name="gift" value="shirt"><img class="gimg" src="assets/gifts/shirt-front.jpg" alt=""><span class="gname">The Church T-Shirt</span><span class="gmin">$72</span></label>
+        <label class="gopt"><input type="radio" name="gift" value="hat"><img class="gimg" src="assets/gifts/hat-heather.jpg" alt=""><span class="gname">The Church Hat</span><span class="gmin">$72</span></label>
+        <label class="gopt"><input type="radio" name="gift" value="both"><span class="gimg gpair"><img src="assets/gifts/shirt-front.jpg" alt=""><img src="assets/gifts/hat-khaki.jpg" alt=""></span><span class="gname">The Shirt &amp; Hat</span><span class="gmin">$150</span></label>
+        <div class="gfields">
+          <div class="gf" id="fSize" hidden><label for="size">Shirt size</label><select id="size"><option>S</option><option selected>M</option><option>L</option><option>XL</option><option>2XL</option><option>3XL</option></select></div>
+          <div class="gf" id="fColor" hidden><label for="color">Hat color</label><select id="color"><option>Heather Gray &amp; Black</option><option>Khaki</option><option>Pink</option><option>Orange &amp; Khaki</option><option>Silver</option><option>White</option></select></div>
+          <div class="gf"><label for="amt">Gift amount</label><div class="gamt">$<input id="amt" type="number" min="1" step="1" value="72" inputmode="decimal"></div><small id="amtNote"></small></div>
         </div>
-        <div class="gift-card">
-          <img src="assets/gifts/hat-heather.jpg" alt="Heather gray and black trucker hat with embroidered H.O.R.S.E.S. Church logo" loading="lazy">
-          <div class="gift-thumbs"><img src="assets/gifts/hat-khaki.jpg" alt="Khaki" loading="lazy"><img src="assets/gifts/hat-pink.jpg" alt="Pink" loading="lazy"><img src="assets/gifts/hat-orange.jpg" alt="Orange and khaki" loading="lazy"><img src="assets/gifts/hat-silver.jpg" alt="Silver" loading="lazy"><img src="assets/gifts/hat-white.jpg" alt="White" loading="lazy"></div>
-          <h3>The Church Hat</h3>
-          <div class="gift-amt">$72</div>
-          <p>Embroidered trucker hat with a mesh back and snap closure. Choose from six colors.</p>
-          <a class="btn btn-solid" href="https://donorbox.org/horse-recording-donation?amount=72" target="_blank" rel="noopener">Give $72</a>
-        </div>
-        <div class="gift-card featured">
-          <div class="gift-pair"><img src="assets/gifts/shirt-front.jpg" alt="Church t-shirt" loading="lazy"><img src="assets/gifts/hat-khaki.jpg" alt="Church hat" loading="lazy"></div>
-          <h3>The Shirt &amp; Hat</h3>
-          <div class="gift-amt">$150</div>
-          <p>Both thank-you gifts together: the church t-shirt and the trucker hat in your choice of color.</p>
-          <a class="btn btn-solid" href="https://donorbox.org/horse-recording-donation?amount=150" target="_blank" rel="noopener">Give $150</a>
-        </div>
-      </div>
-      <div class="gift-how">
-        <p><strong>How to receive your gift.</strong> When you give, please include in the comment box which gift you'd like, your shirt size, and your hat color (heather gray &amp; black, khaki, pink, orange &amp; khaki, silver, or white). Gifts ship to the address you enter with your donation.</p>
-        <p><strong>About your tax deduction.</strong> When you receive a thank-you gift, the tax-deductible part of your donation is the amount you give minus the fair market value of the gift. Your receipt will show this.</p>
-      </div>
+        <button class="btn btn-solid gbtn" id="giveBtn" type="submit">Give</button>
+        <p id="giftErr" style="color:#a3253f;margin:8px 0 0;font-size:.9rem;"></p>
+        <p class="gtax">Secure checkout through Stripe. Gifts ship within the U.S. to the address you enter at checkout. When you receive a thank-you gift, the tax-deductible part of your donation is the amount you give minus the fair market value of the gift.</p>
+      </form>
+      <script>
+      (function(){
+        var mins={none:1,shirt:72,hat:72,both:150},f=document.getElementById('giftForm'),amt=document.getElementById('amt');
+        function sync(){var g=f.gift.value,m=mins[g];document.getElementById('fSize').hidden=!(g==='shirt'||g==='both');document.getElementById('fColor').hidden=!(g==='hat'||g==='both');amt.min=m;if(g!=='none'||!amt.value)amt.value=Math.max(m,g==='none'?(+amt.value||25):m);document.getElementById('amtNote').textContent=g==='none'?'':'Minimum $'+m+' for this gift. You may give more.';document.querySelectorAll('.gopt').forEach(function(l){l.classList.toggle('on',l.querySelector('input').checked)});}
+        f.addEventListener('change',function(e){if(e.target.name==='gift')sync();});
+        amt.addEventListener('blur',function(){var m=mins[f.gift.value];if(+amt.value<m)amt.value=m;});
+        sync();
+        var btn=document.getElementById('giveBtn'),err=document.getElementById('giftErr');
+        f.addEventListener('submit',function(){
+          var g=f.gift.value,m=mins[g],v=+amt.value;
+          if(!(v>=m)){amt.value=m;v=m;}
+          err.textContent='';btn.disabled=true;btn.textContent='One moment\u2026';
+          fetch('https://registrum.eve-868.workers.dev/api/church-gift',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({gift:g,amount:v,size:document.getElementById('size').value,color:document.getElementById('color').value})})
+            .then(function(r){return r.json().then(function(d){if(!r.ok||!d.url)throw new Error(d.error||'Something went wrong.');location.href=d.url;});})
+            .catch(function(e){err.textContent=e.message+' Please try again, or use the form above.';btn.disabled=false;btn.textContent='Give';});
+        });
+      })();
+      </script>
     </div>
 
     <div class="disclosure">
