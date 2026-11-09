@@ -181,14 +181,14 @@ nav a.nav-record:hover{background:var(--gold-light);color:var(--purple-deep);}
 .gthumbs img.on{border-color:var(--gold);}
 .gletter{display:flex;align-items:center;gap:10px;margin:0 0 14px;font-size:.98rem;cursor:pointer;}
 .gletter input{width:18px;height:18px;accent-color:var(--purple-royal);}
-.give-tabs{display:flex;max-width:640px;margin:0 auto 26px;border:2px solid var(--purple-deep);border-radius:2px;overflow:hidden;}
-.gtab{flex:1;padding:14px 10px;background:#fff;color:var(--purple-deep);border:0;font-family:'Cinzel',Georgia,serif;font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;}
-.gtab+.gtab{border-left:2px solid var(--purple-deep);}
-.gtab.on{background:var(--purple-deep);color:var(--gold-light);}
-.gift-promo{max-width:560px;margin:0 auto 22px;text-align:center;background:var(--lavender);border:1px solid #d8c7ef;padding:16px 18px;}
-.gift-promo p{margin:0 auto 6px;max-width:none;}
-.gift-promo-link{font-weight:700;font-size:1.15rem;color:var(--purple-royal);text-decoration:underline;}
-@media (max-width:560px){.gtab{font-size:.72rem;padding:12px 6px;}}
+.give-choice{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:640px;margin:0 auto 26px;}
+.gchoice{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:22px 16px;background:#fff;color:var(--purple-deep);border:2px solid var(--purple-deep);border-radius:2px;cursor:pointer;font:inherit;text-align:center;transition:background .15s,color .15s;}
+.gchoice b{font-family:'Cinzel',Georgia,serif;font-size:1rem;letter-spacing:.06em;text-transform:uppercase;font-weight:700;}
+.gchoice small{font-size:.88rem;line-height:1.35;color:#5a4a72;}
+.gchoice:not(.on):hover{background:var(--lavender);}
+.gchoice.on{background:var(--purple-deep);color:var(--gold-light);}
+.gchoice.on small{color:#e8dcc0;}
+@media (max-width:560px){.give-choice{grid-template-columns:1fr;gap:10px;}.gchoice{padding:16px 12px;}}
 </style>
 </head>
 <body>
@@ -226,16 +226,12 @@ nav a.nav-record:hover{background:var(--gold-light);color:var(--purple-deep);}
   <div class="wrap">
     <div class="divider"><span class="line"></span><span class="line"></span></div>
     <h2 style="text-align:center;">Make Your Gift</h2>
-    <p style="text-align:center;margin:0 auto 22px;">Choose how you'd like to give. You only need one.</p>
-    <div class="give-tabs" role="tablist">
-      <button type="button" class="gtab on" role="tab" id="tabGive" aria-selected="true" data-p="pGive">Give</button>
-      <button type="button" class="gtab" role="tab" id="tabGift" aria-selected="false" data-p="pGift">Give &amp; Receive a Thank-You Gift</button>
+    <p style="text-align:center;margin:0 auto 22px;">Choose how you'd like to give.</p>
+    <div class="give-choice">
+      <button type="button" class="gchoice" aria-expanded="false" aria-controls="pGive" data-p="pGive"><b>Give</b><small>One-time or monthly, any amount</small></button>
+      <button type="button" class="gchoice" aria-expanded="false" aria-controls="pGift" data-p="pGift"><b>Give &amp; Receive a Thank&#8209;You Gift</b><small>One-time gift of $72 or more</small></button>
     </div>
-    <div class="gpanel" id="pGive">
-    <div class="gift-promo">
-      <p>One-time donations of $72 or more qualify for a Thank-You Gift.</p>
-      <a href="#thank-you-gifts" class="gift-promo-link" data-go="pGift">Donate with a Thank-You Gift!</a>
-    </div>
+    <div class="gpanel" id="pGive" hidden>
     <div class="give-split">
       <div class="give-form">
         <script type="module" src="https://donorbox.org/widgets.js" async></script>
@@ -246,10 +242,6 @@ nav a.nav-record:hover{background:var(--gold-light);color:var(--purple-deep);}
     </div>
 
     <div class="gpanel" id="pGift" hidden>
-    <div class="gift-promo">
-      <p>Thank-you gifts are for one-time donations. Want to give every month instead?</p>
-      <a href="#give" class="gift-promo-link" data-go="pGive">Start a Monthly Donation!</a>
-    </div>
     <div class="gifts" id="thank-you-gifts">
       <p style="text-align:center;margin:0 auto;">Choose a thank-you gift with your one-time gift to the mission and purposes of H.O.R.S.E.S. Church.</p>
       <form class="gift-box" id="giftForm" onsubmit="return false">
@@ -361,14 +353,15 @@ function mailSubmit(e, formEl, toAddress, subject){
 </script>
 <script>
 (function(){
-  var tabs=document.querySelectorAll('.gtab');
+  var btns=document.querySelectorAll('.gchoice');
   function open(id,scroll){
-    tabs.forEach(function(t){var on=t.dataset.p===id;t.classList.toggle('on',on);t.setAttribute('aria-selected',on);document.getElementById(t.dataset.p).hidden=!on;});
-    if(scroll)document.querySelector('.give-tabs').scrollIntoView({behavior:'smooth',block:'start'});
+    btns.forEach(function(b){var on=b.dataset.p===id;b.classList.toggle('on',on);b.setAttribute('aria-expanded',on);document.getElementById(b.dataset.p).hidden=!on;});
+    if(scroll)document.querySelector('.give-choice').scrollIntoView({behavior:'smooth',block:'start'});
+    history.replaceState(null,'',id==='pGift'?'#thank-you-gifts':'#give');
   }
-  tabs.forEach(function(t){t.addEventListener('click',function(){open(t.dataset.p,false);});});
-  document.querySelectorAll('[data-go]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();open(a.dataset.go,true);history.replaceState(null,'',a.dataset.go==='pGift'?'#thank-you-gifts':'#give');});});
+  btns.forEach(function(b){b.addEventListener('click',function(){open(b.dataset.p,false);});});
   if(location.hash==='#thank-you-gifts')open('pGift',true);
+  else if(location.hash==='#give-now')open('pGive',true);
 })();
 </script>
 </body>
