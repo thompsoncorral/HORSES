@@ -253,7 +253,7 @@ nav a.nav-record:hover{background:var(--gold-light);color:var(--purple-deep);}
           <div class="gthumbs" id="gThumbs"></div>
         </div>
         <div class="gfields">
-          <div class="gf" id="fSize" hidden><label for="size">Shirt size</label><select id="size"><option>S</option><option selected>M</option><option>L</option><option>XL</option><option>2XL</option><option>3XL</option></select></div>
+          <div class="gf" id="fSize" hidden><label for="size">Shirt size</label><select id="size"><option value="" selected disabled>Choose a size</option><option>S</option><option>M</option><option>L</option><option>XL</option><option>2XL</option><option>3XL</option></select></div>
           <div class="gf" id="fColor" hidden><label for="color">Hat color</label><select id="color"><option value="" selected disabled>Choose a hat color</option><option>Heather Gray &amp; Black</option><option>Khaki</option><option>Pink</option><option>Orange &amp; Khaki</option><option>Silver</option><option>White</option></select></div>
           <div class="gf"><label for="amt">Gift amount</label><div class="gamt">$<input id="amt" type="number" min="1" step="1" value="72" inputmode="decimal"></div><small id="amtNote"></small></div>
         </div>
@@ -265,7 +265,7 @@ nav a.nav-record:hover{background:var(--gold-light);color:var(--purple-deep);}
       <script>
       (function(){
         var mins={none:1,shirt:72,hat:72,both:150},f=document.getElementById('giftForm'),amt=document.getElementById('amt');
-        function sync(){var g=f.gift.value,m=mins[g];document.getElementById('fSize').hidden=!(g==='shirt'||g==='both');document.getElementById('fColor').hidden=!(g==='hat'||g==='both');document.getElementById('color').required=(g==='hat'||g==='both');amt.min=m;if(g!=='none'||!amt.value)amt.value=Math.max(m,g==='none'?(+amt.value||25):m);document.getElementById('amtNote').textContent=g==='none'?'':'Minimum $'+m+' for this gift. You may give more.';document.querySelectorAll('.gopt').forEach(function(l){l.classList.toggle('on',l.querySelector('input').checked)});}
+        function sync(){var g=f.gift.value,m=mins[g];document.getElementById('fSize').hidden=!(g==='shirt'||g==='both');document.getElementById('size').required=(g==='shirt'||g==='both');document.getElementById('fColor').hidden=!(g==='hat'||g==='both');document.getElementById('color').required=(g==='hat'||g==='both');amt.min=m;if(g!=='none'||!amt.value)amt.value=Math.max(m,g==='none'?(+amt.value||25):m);document.getElementById('amtNote').textContent=g==='none'?'':'Minimum $'+m+' for this gift. You may give more.';document.querySelectorAll('.gopt').forEach(function(l){l.classList.toggle('on',l.querySelector('input').checked)});}
         var HATS={'Heather Gray & Black':'hat-heather','Khaki':'hat-khaki','Pink':'hat-pink','Orange & Khaki':'hat-orange','Silver':'hat-silver','White':'hat-white'};
         var colorSel=document.getElementById('color'),big=document.getElementById('gBig'),thumbs=document.getElementById('gThumbs'),prevBox=document.getElementById('gPrev');
         function src(n){return 'assets/gifts/'+n+'.jpg';}
@@ -289,6 +289,7 @@ nav a.nav-record:hover{background:var(--gold-light);color:var(--purple-deep);}
         var btn=document.getElementById('giveBtn'),err=document.getElementById('giftErr');
         f.addEventListener('submit',function(){
           var g=f.gift.value,m=mins[g],v=+amt.value;
+          if((g==='shirt'||g==='both')&&!document.getElementById('size').value){err.textContent='Please choose a shirt size.';document.getElementById('size').focus();return;}
           if((g==='hat'||g==='both')&&!colorSel.value){err.textContent='Please choose a hat color.';colorSel.focus();return;}
           if(!(v>=m)){amt.value=m;v=m;}
           err.textContent='';btn.disabled=true;btn.textContent='One moment\u2026';
