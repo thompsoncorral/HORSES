@@ -246,6 +246,10 @@ nav a.nav-record:hover{background:var(--gold-light);color:var(--purple-deep);}
     </div>
 
     <div class="gpanel" id="pGift" hidden>
+    <div class="gift-promo">
+      <p>Thank-you gifts are for one-time donations. Want to give every month instead?</p>
+      <a href="#give" class="gift-promo-link" data-go="pGive">Start a Monthly Donation!</a>
+    </div>
     <div class="gifts" id="thank-you-gifts">
       <p style="text-align:center;margin:0 auto;">Choose a thank-you gift with your one-time gift to the mission and purposes of H.O.R.S.E.S. Church.</p>
       <form class="gift-box" id="giftForm" onsubmit="return false">
@@ -363,7 +367,7 @@ function mailSubmit(e, formEl, toAddress, subject){
     if(scroll)document.querySelector('.give-tabs').scrollIntoView({behavior:'smooth',block:'start'});
   }
   tabs.forEach(function(t){t.addEventListener('click',function(){open(t.dataset.p,false);});});
-  document.querySelectorAll('[data-go]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();open(a.dataset.go,true);history.replaceState(null,'','#thank-you-gifts');});});
+  document.querySelectorAll('[data-go]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();open(a.dataset.go,true);history.replaceState(null,'',a.dataset.go==='pGift'?'#thank-you-gifts':'#give');});});
   if(location.hash==='#thank-you-gifts')open('pGift',true);
 })();
 </script>
