@@ -181,6 +181,14 @@ nav a.nav-record:hover{background:var(--gold-light);color:var(--purple-deep);}
 .gthumbs img.on{border-color:var(--gold);}
 .gletter{display:flex;align-items:center;gap:10px;margin:0 0 14px;font-size:.98rem;cursor:pointer;}
 .gletter input{width:18px;height:18px;accent-color:var(--purple-royal);}
+.give-tabs{display:flex;max-width:640px;margin:0 auto 26px;border:2px solid var(--purple-deep);border-radius:2px;overflow:hidden;}
+.gtab{flex:1;padding:14px 10px;background:#fff;color:var(--purple-deep);border:0;font-family:'Cinzel',Georgia,serif;font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;}
+.gtab+.gtab{border-left:2px solid var(--purple-deep);}
+.gtab.on{background:var(--purple-deep);color:var(--gold-light);}
+.gift-promo{max-width:560px;margin:0 auto 22px;text-align:center;background:var(--lavender);border:1px solid #d8c7ef;padding:16px 18px;}
+.gift-promo p{margin:0 auto 6px;max-width:none;}
+.gift-promo-link{font-weight:700;font-size:1.15rem;color:var(--purple-royal);text-decoration:underline;}
+@media (max-width:560px){.gtab{font-size:.72rem;padding:12px 6px;}}
 </style>
 </head>
 <body>
@@ -218,7 +226,16 @@ nav a.nav-record:hover{background:var(--gold-light);color:var(--purple-deep);}
   <div class="wrap">
     <div class="divider"><span class="line"></span><span class="line"></span></div>
     <h2 style="text-align:center;">Make Your Gift</h2>
-    <p style="text-align:center;margin:0 auto 32px;">Choose an amount and where you'd like your gift to go, or <a href="#thank-you-gifts" style="font-weight:600;text-decoration:underline;">Pick a Thank-You Gift</a>.</p>
+    <p style="text-align:center;margin:0 auto 22px;">Choose how you'd like to give. You only need one.</p>
+    <div class="give-tabs" role="tablist">
+      <button type="button" class="gtab on" role="tab" id="tabGive" aria-selected="true" data-p="pGive">Give</button>
+      <button type="button" class="gtab" role="tab" id="tabGift" aria-selected="false" data-p="pGift">Give &amp; Receive a Thank-You Gift</button>
+    </div>
+    <div class="gpanel" id="pGive">
+    <div class="gift-promo">
+      <p>One-time donations of $72 or more qualify for a Thank-You Gift.</p>
+      <a href="#thank-you-gifts" class="gift-promo-link" data-go="pGift">Donate with a Thank-You Gift!</a>
+    </div>
     <div class="give-split">
       <div class="give-form">
         <script type="module" src="https://donorbox.org/widgets.js" async></script>
@@ -226,14 +243,13 @@ nav a.nav-record:hover{background:var(--gold-light);color:var(--purple-deep);}
         <noscript><p style="text-align:center;"><a class="btn btn-solid" href="https://donorbox.org/horse-recording-donation">Give Now</a></p></noscript>
       </div>
     </div>
+    </div>
 
-
+    <div class="gpanel" id="pGift" hidden>
     <div class="gifts" id="thank-you-gifts">
-      <h2 style="text-align:center;">Thank-You Gifts</h2>
       <p style="text-align:center;margin:0 auto;">Choose a thank-you gift with your one-time gift to the mission and purposes of H.O.R.S.E.S. Church.</p>
       <form class="gift-box" id="giftForm" onsubmit="return false">
-        <label class="gopt"><input type="radio" name="gift" value="none" checked><span class="gimg gnone">&#10022;</span><span class="gname">No gift, just give</span><span class="gmin">any amount</span></label>
-        <label class="gopt"><input type="radio" name="gift" value="shirt"><img class="gimg" src="assets/gifts/shirt-front.jpg" alt=""><span class="gname">The Church T-Shirt</span><span class="gmin">$72</span></label>
+        <label class="gopt"><input type="radio" name="gift" value="shirt" checked><img class="gimg" src="assets/gifts/shirt-front.jpg" alt=""><span class="gname">The Church T-Shirt</span><span class="gmin">$72</span></label>
         <label class="gopt"><input type="radio" name="gift" value="hat"><img class="gimg" src="assets/gifts/hat-heather.jpg" alt=""><span class="gname">The Church Hat</span><span class="gmin">$72</span></label>
         <label class="gopt"><input type="radio" name="gift" value="both"><span class="gimg gpair"><img src="assets/gifts/shirt-front.jpg" alt=""><img src="assets/gifts/hat-khaki.jpg" alt=""></span><span class="gname">The Shirt &amp; Hat</span><span class="gmin">$150</span></label>
         <div class="gpreview" id="gPrev" hidden>
@@ -287,6 +303,8 @@ nav a.nav-record:hover{background:var(--gold-light);color:var(--purple-deep);}
       </script>
     </div>
 
+    </div>
+
     <div class="disclosure">
       <strong>About our tax status.</strong> H.O.R.S.E.S. Church is a church under Section 508(c)(1)(A) of the Internal Revenue Code and is tax-exempt without needing to apply to the IRS. Gifts are generally tax-deductible to the extent allowed by law for donors who itemize. Written acknowledgments are available on request. Please consult your own tax advisor about your situation.
     </div>
@@ -336,6 +354,18 @@ function mailSubmit(e, formEl, toAddress, subject){
   var note = formEl.querySelector('.formnote');
   if(note){ note.textContent = 'Your email client should now be open with these details pre-filled. If nothing happens, email us directly at ' + toAddress + '.'; }
 }
+</script>
+<script>
+(function(){
+  var tabs=document.querySelectorAll('.gtab');
+  function open(id,scroll){
+    tabs.forEach(function(t){var on=t.dataset.p===id;t.classList.toggle('on',on);t.setAttribute('aria-selected',on);document.getElementById(t.dataset.p).hidden=!on;});
+    if(scroll)document.querySelector('.give-tabs').scrollIntoView({behavior:'smooth',block:'start'});
+  }
+  tabs.forEach(function(t){t.addEventListener('click',function(){open(t.dataset.p,false);});});
+  document.querySelectorAll('[data-go]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();open(a.dataset.go,true);history.replaceState(null,'','#thank-you-gifts');});});
+  if(location.hash==='#thank-you-gifts')open('pGift',true);
+})();
 </script>
 </body>
 </html>
