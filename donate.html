@@ -244,7 +244,7 @@ nav a.nav-record:hover{background:var(--gold-light);color:var(--purple-deep);}
     <div class="gpanel" id="pGift" hidden>
     <div class="gifts" id="thank-you-gifts">
       <p style="text-align:center;margin:0 auto;">Choose a thank-you gift with your one-time gift to the mission and purposes of H.O.R.S.E.S. Church.</p>
-      <form class="gift-box" id="giftForm" onsubmit="return false">
+      <form class="gift-box" id="giftForm" onsubmit="return false" autocomplete="off">
         <label class="gopt"><input type="radio" name="gift" value="shirt" checked><img class="gimg" src="assets/gifts/shirt-front.jpg" alt=""><span class="gname">The Church T-Shirt</span><span class="gmin">$72</span></label>
         <label class="gopt"><input type="radio" name="gift" value="hat"><img class="gimg" src="assets/gifts/hat-heather.jpg" alt=""><span class="gname">The Church Hat</span><span class="gmin">$72</span></label>
         <label class="gopt"><input type="radio" name="gift" value="both"><span class="gimg gpair"><img src="assets/gifts/shirt-front.jpg" alt=""><img src="assets/gifts/hat-khaki.jpg" alt=""></span><span class="gname">The Shirt &amp; Hat</span><span class="gmin">$150</span></label>
@@ -283,6 +283,8 @@ nav a.nav-record:hover{background:var(--gold-light);color:var(--purple-deep);}
         thumbs.addEventListener('click',function(e){if(e.target.dataset.n)show(e.target.dataset.n);});
         colorSel.addEventListener('change',function(){var g=f.gift.value;if(g==='both'){preview();show(HATS[colorSel.value]);}else preview();});
         f.addEventListener('change',function(e){if(e.target.name==='gift'){sync();preview();}});
+        document.getElementById('size').value='';colorSel.value='';
+        window.addEventListener('pageshow',function(){document.getElementById('size').value='';colorSel.value='';preview();});
         preview();
         amt.addEventListener('blur',function(){var m=mins[f.gift.value];if(+amt.value<m)amt.value=m;});
         sync();
