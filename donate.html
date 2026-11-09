@@ -254,7 +254,7 @@ nav a.nav-record:hover{background:var(--gold-light);color:var(--purple-deep);}
         </div>
         <div class="gfields">
           <div class="gf" id="fSize" hidden><label for="size">Shirt size</label><select id="size"><option>S</option><option selected>M</option><option>L</option><option>XL</option><option>2XL</option><option>3XL</option></select></div>
-          <div class="gf" id="fColor" hidden><label for="color">Hat color</label><select id="color"><option>Heather Gray &amp; Black</option><option>Khaki</option><option>Pink</option><option>Orange &amp; Khaki</option><option>Silver</option><option>White</option></select></div>
+          <div class="gf" id="fColor" hidden><label for="color">Hat color</label><select id="color"><option value="" selected disabled>Choose a hat color</option><option>Heather Gray &amp; Black</option><option>Khaki</option><option>Pink</option><option>Orange &amp; Khaki</option><option>Silver</option><option>White</option></select></div>
           <div class="gf"><label for="amt">Gift amount</label><div class="gamt">$<input id="amt" type="number" min="1" step="1" value="72" inputmode="decimal"></div><small id="amtNote"></small></div>
         </div>
         <label class="gletter"><input type="checkbox" id="letter"> Yes, send me the monthly church letter</label>
@@ -265,20 +265,20 @@ nav a.nav-record:hover{background:var(--gold-light);color:var(--purple-deep);}
       <script>
       (function(){
         var mins={none:1,shirt:72,hat:72,both:150},f=document.getElementById('giftForm'),amt=document.getElementById('amt');
-        function sync(){var g=f.gift.value,m=mins[g];document.getElementById('fSize').hidden=!(g==='shirt'||g==='both');document.getElementById('fColor').hidden=!(g==='hat'||g==='both');amt.min=m;if(g!=='none'||!amt.value)amt.value=Math.max(m,g==='none'?(+amt.value||25):m);document.getElementById('amtNote').textContent=g==='none'?'':'Minimum $'+m+' for this gift. You may give more.';document.querySelectorAll('.gopt').forEach(function(l){l.classList.toggle('on',l.querySelector('input').checked)});}
+        function sync(){var g=f.gift.value,m=mins[g];document.getElementById('fSize').hidden=!(g==='shirt'||g==='both');document.getElementById('fColor').hidden=!(g==='hat'||g==='both');document.getElementById('color').required=(g==='hat'||g==='both');amt.min=m;if(g!=='none'||!amt.value)amt.value=Math.max(m,g==='none'?(+amt.value||25):m);document.getElementById('amtNote').textContent=g==='none'?'':'Minimum $'+m+' for this gift. You may give more.';document.querySelectorAll('.gopt').forEach(function(l){l.classList.toggle('on',l.querySelector('input').checked)});}
         var HATS={'Heather Gray & Black':'hat-heather','Khaki':'hat-khaki','Pink':'hat-pink','Orange & Khaki':'hat-orange','Silver':'hat-silver','White':'hat-white'};
         var colorSel=document.getElementById('color'),big=document.getElementById('gBig'),thumbs=document.getElementById('gThumbs'),prevBox=document.getElementById('gPrev');
         function src(n){return 'assets/gifts/'+n+'.jpg';}
         function show(n){big.src=src(n);thumbs.querySelectorAll('img').forEach(function(t){t.classList.toggle('on',t.dataset.n===n);});}
         function preview(){
-          var g=f.gift.value,hat=HATS[colorSel.value],list=[];
+          var g=f.gift.value,hat=HATS[colorSel.value],hats=hat?[hat]:Object.keys(HATS).map(function(k){return HATS[k];}),list=[];
           if(g==='shirt')list=['shirt-front','shirt-back','shirt-model'];
-          if(g==='hat')list=[hat];
-          if(g==='both')list=['shirt-front',hat,'shirt-back','shirt-model'];
+          if(g==='hat')list=hats;
+          if(g==='both')list=['shirt-front'].concat(hats,['shirt-back','shirt-model']);
           prevBox.hidden=!list.length; if(!list.length)return;
           thumbs.innerHTML=list.length>1?list.map(function(n){return '<img data-n="'+n+'" src="'+src(n)+'" alt="">';}).join(''):'';
-          show(g==='hat'?hat:list[0]);
-          big.alt=g==='hat'?'Church hat in '+colorSel.value:'Church t-shirt';
+          show(list[0]);
+          big.alt=g==='hat'?(hat?'Church hat in '+colorSel.value:'Church hat'):'Church t-shirt';
         }
         thumbs.addEventListener('click',function(e){if(e.target.dataset.n)show(e.target.dataset.n);});
         colorSel.addEventListener('change',function(){var g=f.gift.value;if(g==='both'){preview();show(HATS[colorSel.value]);}else preview();});
@@ -289,6 +289,7 @@ nav a.nav-record:hover{background:var(--gold-light);color:var(--purple-deep);}
         var btn=document.getElementById('giveBtn'),err=document.getElementById('giftErr');
         f.addEventListener('submit',function(){
           var g=f.gift.value,m=mins[g],v=+amt.value;
+          if((g==='hat'||g==='both')&&!colorSel.value){err.textContent='Please choose a hat color.';colorSel.focus();return;}
           if(!(v>=m)){amt.value=m;v=m;}
           err.textContent='';btn.disabled=true;btn.textContent='One moment\u2026';
           fetch('https://registrum.eve-868.workers.dev/api/church-gift',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({gift:g,amount:v,letter:document.getElementById('letter').checked,size:document.getElementById('size').value,color:document.getElementById('color').value})})
